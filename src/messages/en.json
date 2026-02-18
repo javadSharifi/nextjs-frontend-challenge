@@ -17,5 +17,20 @@
       }
     },
     "action": "Explore Module"
+  },
+  "Login": {
+    "title": "Welcome Back",
+    "subtitle": "Enter your credentials to access the dashboard",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Sign In",
+    "loading": "Authenticating...",
+    "error": "Invalid credentials",
+    "success": "Login successful! Redirecting...",
+    "validation": {
+      "username_required": "Username is required",
+      "password_required": "Password is required",
+      "min_length": "Must be at least 3 characters"
+    }
   }
 }
