@@ -13,7 +13,7 @@ function getTokenFromCookie(): string | undefined {
     ?.split('=')[1];
 }
 
-export async function apiClient<T>(endpoint: string, options: ApiClientOptions = {}): Promise<T> {
+async function request<T>(endpoint: string, options: ApiClientOptions = {}): Promise<T> {
   const headers = new Headers(options.headers);
 
   if (!headers.has('Content-Type')) {
@@ -26,6 +26,8 @@ export async function apiClient<T>(endpoint: string, options: ApiClientOptions =
   }
 
   const url = new URL(`${BASE_URL}${endpoint}`);
+
+  // مدیریت هوشمند Query Parameters
   if (options.params) {
     Object.entries(options.params).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
@@ -46,3 +48,25 @@ export async function apiClient<T>(endpoint: string, options: ApiClientOptions =
 
   return response.json();
 }
+
+export const apiClient = {
+  get: <T>(endpoint: string, options?: ApiClientOptions) =>
+    request<T>(endpoint, { ...options, method: 'GET' }),
+
+  post: <T, B = unknown>(endpoint: string, data?: B, options?: ApiClientOptions) =>
+    request<T>(endpoint, {
+      ...options,
+      method: 'POST',
+      body: data ? JSON.stringify(data) : undefined,
+    }),
+
+  put: <T, B = unknown>(endpoint: string, data?: B, options?: ApiClientOptions) =>
+    request<T>(endpoint, {
+      ...options,
+      method: 'PUT',
+      body: data ? JSON.stringify(data) : undefined,
+    }),
+
+  delete: <T>(endpoint: string, options?: ApiClientOptions) =>
+    request<T>(endpoint, { ...options, method: 'DELETE' }),
+};

@@ -32,5 +32,14 @@
       "password_required": "رمز عبور الزامی است",
       "min_length": "باید حداقل 3 کاراکتر باشد"
     }
+  },
+  "Dashboard": {
+    "title": "داشبورد",
+    "users": "کاربران",
+    "packages": "بسته‌ها",
+    "logout": "خروج"
+  },
+  "Auth": {
+    "logout": "خروج"
   }
 }

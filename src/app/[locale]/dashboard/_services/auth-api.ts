@@ -1,25 +1,21 @@
 import { apiClient } from '../_lib/api-client';
 import { AuthUser, LoginInput } from '../_lib/auth';
 
+interface RefreshResponse {
+  accessToken: string;
+  refreshToken: string;
+}
+
 export const authApi = {
   login: (credentials: LoginInput) =>
-    apiClient<AuthUser>('/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({
-        username: credentials.username,
-        password: credentials.password,
-        expiresInMins: 60,
-      }),
+    apiClient.post<AuthUser>('/auth/login', {
+      username: credentials.username,
+      password: credentials.password,
+      expiresInMins: 60,
     }),
-
-  getMe: () =>
-    apiClient<AuthUser>('/auth/me', {
-      method: 'GET',
-    }),
-
+  getMe: () => apiClient.get<AuthUser>('/auth/me'),
   refreshToken: (token: string) =>
-    apiClient<{ accessToken: string; refreshToken: string }>('/auth/refresh', {
-      method: 'POST',
-      body: JSON.stringify({ refreshToken: token }),
+    apiClient.post<RefreshResponse>('/auth/refresh', {
+      refreshToken: token,
     }),
 };

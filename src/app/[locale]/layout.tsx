@@ -1,7 +1,5 @@
-import { routing } from '@/src/i18n/routing';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { notFound } from 'next/navigation';
 import '../globals.css';
 import { QueryProvider } from '@/src/providers/QueryProvider';
 import { Provider } from '@/src/components/ui/provider';
@@ -13,10 +11,6 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-
-  if (!routing.locales.includes(locale as 'fa' | 'en')) {
-    notFound();
-  }
 
   const messages = await getMessages();
 
