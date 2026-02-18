@@ -1,3 +1,21 @@
 {
-
+  "Home": {
+    "title": "Frontend Challenge Gateway",
+    "subtitle": "Select a module to explore the implementation details.",
+    "modules": {
+      "dashboard": {
+        "title": "Dashboard Panel",
+        "description": "Authentication, Users & Products management using DummyJSON."
+      },
+      "games": {
+        "title": "Games Store",
+        "description": "Product listing with filters and infinite scroll using RAWG API."
+      },
+      "dropdown": {
+        "title": "Advanced Dropdown",
+        "description": "Custom headless UI component with virtualization and multiselect."
+      }
+    },
+    "action": "Explore Module"
+  }
 }
