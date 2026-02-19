@@ -1,10 +1,13 @@
-// src/app/[locale]/dashboard/users/_components/UserTable.tsx
 import { Avatar, Group, Text, Badge } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 import { User } from '../_services/useUsers';
 import { ColumnDef, GenericTable } from '../../../_components/GenericTable';
 
-export const UserTable = ({ users, isLoading }: { users: User[]; isLoading: boolean }) => {
+interface UserTableProps {
+  users: User[];
+}
+
+export const UserTable = ({ users }: UserTableProps) => {
   const t = useTranslations('Users');
 
   const columns: ColumnDef<User>[] = [
@@ -33,5 +36,5 @@ export const UserTable = ({ users, isLoading }: { users: User[]; isLoading: bool
     },
   ];
 
-  return <GenericTable data={users} columns={columns} isLoading={isLoading} />;
+  return <GenericTable data={users} columns={columns} showActions={true} />;
 };

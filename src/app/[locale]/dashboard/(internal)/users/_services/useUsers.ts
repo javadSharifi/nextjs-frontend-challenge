@@ -18,17 +18,29 @@ interface UsersResponse {
   total: number;
 }
 
-export const useUsers = (page: number, limit: number, query: string) => {
+interface UseUsersParams {
+  page: number;
+  limit: number;
+  q?: string;
+}
+
+export const useUsers = ({ page, limit, q }: UseUsersParams) => {
   return useQuery({
-    queryKey: ['users', page, limit, query],
+    queryKey: ['users', page, limit, q],
     queryFn: async () => {
-      const endpoint = query ? '/users/search' : '/users';
+      const params: Record<string, string | number | undefined> = {
+        limit,
+        skip: (page - 1) * limit,
+      };
+
+      let endpoint = '/users';
+      if (q) {
+        endpoint = '/users/search';
+        params.q = q;
+      }
+
       return apiClient.get<UsersResponse>(endpoint, {
-        params: {
-          limit,
-          skip: (page - 1) * limit,
-          q: query || undefined,
-        },
+        params,
       });
     },
     placeholderData: (prev) => prev,

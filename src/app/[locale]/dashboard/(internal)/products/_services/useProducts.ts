@@ -15,20 +15,20 @@ interface ProductsResponse {
   products: Product[];
   total: number;
 }
-interface ProductQueryParams {
+
+interface UseProductsParams {
+  page: number;
   limit: number;
-  skip: number;
   q?: string;
+  category?: string;
 }
 
-export const useProducts = (page: number, limit: number, q: string, category: string) => {
+export const useProducts = ({ page, limit, q, category }: UseProductsParams) => {
   return useQuery({
     queryKey: ['products', page, limit, q, category],
     queryFn: async () => {
       let endpoint = '/products';
-
-      // مقداردهی اولیه با تایپ مشخص به جای any
-      const params: ProductQueryParams = {
+      const params: Record<string, string | number | undefined> = {
         limit,
         skip: (page - 1) * limit,
       };
@@ -38,12 +38,14 @@ export const useProducts = (page: number, limit: number, q: string, category: st
         params.q = q;
       } else if (category && category !== 'all') {
         endpoint = `/products/category/${category}`;
+        // Category endpoint doesn't support search, but we handle it via if/else
       }
 
       return apiClient.get<ProductsResponse>(endpoint, {
-        params: params as unknown as Record<string, string | number | boolean | undefined>,
+        params,
       });
     },
-    placeholderData: (previousData) => previousData,
+    placeholderData: (prev) => prev,
+    staleTime: 5000,
   });
 };

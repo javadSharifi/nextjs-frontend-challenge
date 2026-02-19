@@ -1,16 +1,13 @@
-// src/app/[locale]/dashboard/products/_components/ProductTable.tsx
 import { Image, Badge, Text, Group } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 import { Product } from '../_services/useProducts';
 import { ColumnDef, GenericTable } from '../../../_components/GenericTable';
 
-export const ProductTable = ({
-  products,
-  isLoading,
-}: {
+interface ProductTableProps {
   products: Product[];
-  isLoading: boolean;
-}) => {
+}
+
+export const ProductTable = ({ products }: ProductTableProps) => {
   const t = useTranslations('Products');
 
   const columns: ColumnDef<Product>[] = [
@@ -57,5 +54,5 @@ export const ProductTable = ({
     },
   ];
 
-  return <GenericTable data={products} columns={columns} isLoading={isLoading} />;
+  return <GenericTable data={products} columns={columns} showActions={true} />;
 };

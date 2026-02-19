@@ -9,15 +9,8 @@ interface PaginationProps {
   pageSize: number;
   onPageChange: (page: number) => void;
   onPageSizeChange: (size: number) => void;
+  pageSizeOptions?: number[];
 }
-
-const pageSizes = createListCollection({
-  items: [
-    { label: '10', value: '10' },
-    { label: '20', value: '20' },
-    { label: '50', value: '50' },
-  ],
-});
 
 export const Pagination = ({
   currentPage,
@@ -25,17 +18,30 @@ export const Pagination = ({
   pageSize,
   onPageChange,
   onPageSizeChange,
+  pageSizeOptions = [10, 20, 50],
 }: PaginationProps) => {
-  const t = useTranslations('Users.pagination');
-  const totalPages = Math.ceil(totalItems / pageSize);
+  const t = useTranslations('Table');
 
-  const start = (currentPage - 1) * pageSize + 1;
+  const totalPages = Math.ceil(totalItems / pageSize);
+  const start = totalItems === 0 ? 0 : (currentPage - 1) * pageSize + 1;
   const end = Math.min(currentPage * pageSize, totalItems);
 
+  const pageSizes = createListCollection({
+    items: pageSizeOptions.map((size) => ({ label: size.toString(), value: size.toString() })),
+  });
+
   return (
-    <HStack justify="space-between" w="full" py="4" borderTop="1px solid" borderColor="gray.100">
+    <HStack
+      justify="space-between"
+      w="full"
+      py="4"
+      borderTopWidth="1px"
+      borderColor="border.subtle"
+      flexWrap="wrap"
+      gap="4"
+    >
       <HStack gap="4">
-        <Text fontSize="sm" color="gray.600">
+        <Text fontSize="sm" color="fg.muted">
           {t('rows_per_page')}:
         </Text>
         <Select.Root
@@ -56,17 +62,18 @@ export const Pagination = ({
             ))}
           </Select.Content>
         </Select.Root>
-        <Text fontSize="xs" color="gray.500">
-          {t('showing', { start, end, total: totalItems })}
+        <Text fontSize="xs" color="fg.muted">
+          {t('showing')} {start} {t('of')} {end} ({totalItems} total)
         </Text>
       </HStack>
 
       <HStack gap="2">
         <IconButton
-          aria-label="Previous"
+          aria-label="Previous Page"
           variant="ghost"
           disabled={currentPage === 1}
           onClick={() => onPageChange(currentPage - 1)}
+          size="sm"
         >
           <ChevronRight size={18} />
         </IconButton>
@@ -74,10 +81,11 @@ export const Pagination = ({
           {currentPage}
         </Text>
         <IconButton
-          aria-label="Next"
+          aria-label="Next Page"
           variant="ghost"
-          disabled={currentPage >= totalPages}
+          disabled={currentPage >= totalPages || totalPages === 0}
           onClick={() => onPageChange(currentPage + 1)}
+          size="sm"
         >
           <ChevronLeft size={18} />
         </IconButton>
