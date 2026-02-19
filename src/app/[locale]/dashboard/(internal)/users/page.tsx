@@ -8,8 +8,8 @@ import { PageHeader } from '../../_components/PageHeader';
 import { SearchInput } from '../../_components/SearchInput';
 import { DataList } from '../../_components/DataList';
 import { Pagination } from '../../_components/Pagination';
-import { StatsCard } from '../../_components/StatsCard';
-import { Users as UsersIcon, ShieldCheck, UserCheck } from 'lucide-react';
+import { StatsCard, StatsCardColorScheme } from '../../_components/StatsCard';
+import { Users as UsersIcon, ShieldCheck, UserCheck, LucideIcon } from 'lucide-react';
 
 export default function UsersPage() {
   const t = useTranslations('Users');
@@ -18,7 +18,7 @@ export default function UsersPage() {
   const { data, isLoading } = useUsers({ page, limit, q });
   const { data: statsData, isLoading: isStatsLoading } = useUsersStats();
 
-  const stats = [
+  const stats: { title: string; value: string | number; icon: LucideIcon; colorScheme: StatsCardColorScheme }[] = [
     {
       title: t('stats.total_users'),
       value: statsData?.total || '-',
@@ -61,7 +61,7 @@ export default function UsersPage() {
               title={stat.title}
               value={stat.value}
               icon={stat.icon}
-              colorScheme={stat.colorScheme as any}
+              colorScheme={stat.colorScheme}
               isLoading={isStatsLoading}
             />
           ))}

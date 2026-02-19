@@ -1,6 +1,6 @@
 // src/app/[locale]/dashboard/_components/StatsGrid.tsx
 import { SimpleGrid } from '@chakra-ui/react';
-import { Users, ShoppingCart, Package, FileText, MessageSquare } from 'lucide-react';
+import { Users, ShoppingCart, Package, FileText, MessageSquare, LucideIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { DashboardStats } from '../_services/dashboard-api';
 import { StatsCard, StatsCardColorScheme } from './StatsCard';
@@ -13,7 +13,7 @@ interface StatsGridProps {
 export const StatsGrid = ({ stats, isLoading }: StatsGridProps) => {
   const t = useTranslations('Dashboard.kpi');
 
-  const cards: { label: string; value?: number; icon: any; color: StatsCardColorScheme }[] = [
+  const cards: { label: string; value?: number; icon: LucideIcon; color: StatsCardColorScheme }[] = [
     { label: t('users'), value: stats?.users, icon: Users, color: 'blue' },
     { label: t('products'), value: stats?.products, icon: Package, color: 'green' },
     { label: t('carts'), value: stats?.carts, icon: ShoppingCart, color: 'purple' },

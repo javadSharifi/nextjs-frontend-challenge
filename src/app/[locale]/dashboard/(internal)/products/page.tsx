@@ -8,8 +8,8 @@ import { PageHeader } from '../../_components/PageHeader';
 import { SearchInput } from '../../_components/SearchInput';
 import { DataList } from '../../_components/DataList';
 import { Pagination } from '../../_components/Pagination';
-import { StatsCard } from '../../_components/StatsCard';
-import { Package, Layers, AlertTriangle } from 'lucide-react';
+import { StatsCard, StatsCardColorScheme } from '../../_components/StatsCard';
+import { Package, Layers, LucideIcon } from 'lucide-react';
 
 export default function ProductsPage() {
   const t = useTranslations('Products');
@@ -27,7 +27,7 @@ export default function ProductsPage() {
   const { data, isLoading } = useProducts({ page, limit, q, category });
   const { data: statsData, isLoading: isStatsLoading } = useProductsStats();
 
-  const stats = [
+  const stats: { title: string; value: string | number; icon: LucideIcon; colorScheme: StatsCardColorScheme }[] = [
     {
       title: t('stats.total_products'),
       value: statsData?.total || '-',
@@ -40,14 +40,6 @@ export default function ProductsPage() {
       icon: Layers,
       colorScheme: 'purple',
     },
-    // We don't have real "Low Stock" stats yet, so I'll omit it or put a placeholder if I must fill 3.
-    // The previous plan mentioned 2 stats for products. I'll stick to 2 or duplicate one for design balance if needed.
-    // Actually, I can just leave it as 2 or put "Total Stock" if I can calculate it? No.
-    // Let's just use 2 columns or full width for these cards.
-    // The design on Users page used 3 columns.
-    // Let's try to add one more relevant stat if possible?
-    // Maybe just "Average Rating" if I had it.
-    // I'll stick to 2 for now, SimpleGrid will handle it.
   ];
 
   return (
@@ -71,7 +63,7 @@ export default function ProductsPage() {
               title={stat.title}
               value={stat.value}
               icon={stat.icon}
-              colorScheme={stat.colorScheme as any}
+              colorScheme={stat.colorScheme}
               isLoading={isStatsLoading}
             />
           ))}

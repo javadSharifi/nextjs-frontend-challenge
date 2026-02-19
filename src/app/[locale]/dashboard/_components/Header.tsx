@@ -5,7 +5,11 @@ import { Flex, Text, HStack } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 import { LuMenu, LuBell } from 'react-icons/lu';
 
-export default function Header() {
+interface HeaderProps {
+  onSidebarOpen?: () => void;
+}
+
+export default function Header({ onSidebarOpen }: HeaderProps) {
   const t = useTranslations('Dashboard');
 
   return (
@@ -19,7 +23,12 @@ export default function Header() {
       borderBottomWidth="1px"
     >
       <HStack gap="4">
-        <Button variant="ghost" size="sm" display={{ base: 'flex', md: 'none' }}>
+        <Button
+          variant="ghost"
+          size="sm"
+          display={{ base: 'flex', md: 'none' }}
+          onClick={onSidebarOpen}
+        >
           <LuMenu />
         </Button>
         <Text fontWeight="bold" fontSize="lg">
