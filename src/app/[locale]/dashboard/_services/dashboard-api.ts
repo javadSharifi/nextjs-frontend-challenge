@@ -18,6 +18,11 @@ export interface DashboardStats {
   comments: number;
 }
 
+export interface CategoryDistribution {
+  name: string;
+  count: number;
+}
+
 export const dashboardApi = {
   getTotals: async (): Promise<DashboardStats> => {
     const endpoints = ['/users', '/products', '/carts', '/posts', '/comments'];
@@ -40,4 +45,20 @@ export const dashboardApi = {
     apiClient.get<{ products: ProductSummary[] }>('/products', {
       params: { limit: 6, sortBy: 'rating', order: 'desc' },
     }),
+
+  getCategoriesDistribution: async (): Promise<CategoryDistribution[]> => {
+    // Fetch top 100 products to get a category distribution
+    const res = await apiClient.get<{ products: ProductSummary[] }>('/products', { params: { limit: 100, select: 'category' } });
+
+    const counts: Record<string, number> = {};
+    res.products.forEach((p) => {
+      counts[p.category] = (counts[p.category] || 0) + 1;
+    });
+
+    // Map to array and sort by count desc, take top 6
+    return Object.entries(counts)
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 6);
+  },
 };

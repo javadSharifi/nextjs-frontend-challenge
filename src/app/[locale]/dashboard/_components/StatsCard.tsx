@@ -1,15 +1,17 @@
 import { Box, Flex, Text, Icon, Skeleton } from '@chakra-ui/react';
 import { LucideIcon } from 'lucide-react';
 
+export type StatsCardColorScheme = 'purple' | 'green' | 'blue' | 'orange' | 'red';
+
 interface StatsCardProps {
   title: string;
   value: string | number;
   icon: LucideIcon;
-  colorScheme: 'purple' | 'green' | 'blue';
+  colorScheme: StatsCardColorScheme;
   isLoading?: boolean;
 }
 
-const colorMap = {
+const colorMap: Record<StatsCardColorScheme, { bg: string; color: string; valueColor: string }> = {
   purple: {
     bg: 'purple.100',
     color: 'purple.600',
@@ -25,10 +27,20 @@ const colorMap = {
     color: 'blue.600',
     valueColor: 'gray.800',
   },
+  orange: {
+    bg: 'orange.100',
+    color: 'orange.600',
+    valueColor: 'orange.600',
+  },
+  red: {
+    bg: 'red.100',
+    color: 'red.600',
+    valueColor: 'red.600',
+  },
 };
 
 export const StatsCard = ({ title, value, icon, colorScheme, isLoading }: StatsCardProps) => {
-  const colors = colorMap[colorScheme];
+  const colors = colorMap[colorScheme] || colorMap.blue;
 
   return (
     <Box

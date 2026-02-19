@@ -47,12 +47,17 @@
     "menu_settings": "تنظیمات سیستم",
     "profile_name": "کاربر مدیر",
     "profile_role": "مدیر سیستم",
+    "recent_users": "کاربران جدید",
+    "top_products": "محصولات برتر",
     "kpi": {
       "users": "کاربران",
       "products": "محصولات",
       "carts": "سبد خرید",
       "posts": "پست‌ها",
       "comments": "نظرات"
+    },
+    "charts": {
+      "categories_distribution": "توزیع دسته‌بندی محصولات"
     }
   },
   "Auth": {

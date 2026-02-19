@@ -18,11 +18,17 @@ export const useDashboardData = () => {
     queryFn: dashboardApi.getTopProducts,
   });
 
+  const categoryQuery = useQuery({
+    queryKey: ['category-distribution'],
+    queryFn: dashboardApi.getCategoriesDistribution,
+  });
+
   return {
     stats: statsQuery.data,
     recentUsers: recentUsersQuery.data?.users || [],
     topProducts: topProductsQuery.data?.products || [],
-    isLoading: statsQuery.isLoading || recentUsersQuery.isLoading || topProductsQuery.isLoading,
-    isError: statsQuery.isError || recentUsersQuery.isError,
+    categoryDistribution: categoryQuery.data || [],
+    isLoading: statsQuery.isLoading || recentUsersQuery.isLoading || topProductsQuery.isLoading || categoryQuery.isLoading,
+    isError: statsQuery.isError || recentUsersQuery.isError || topProductsQuery.isError || categoryQuery.isError,
   };
 };
