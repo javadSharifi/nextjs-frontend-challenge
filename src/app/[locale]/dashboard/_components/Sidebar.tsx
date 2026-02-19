@@ -15,7 +15,7 @@ export default function Sidebar() {
   const NAV_ITEMS = [
     { label: tDashboard('title'), href: '/dashboard', icon: LuLayoutDashboard },
     { label: tDashboard('users'), href: '/dashboard/users', icon: LuUsers },
-    { label: tDashboard('packages'), href: '/dashboard/packages', icon: LuPackage },
+    { label: tDashboard('products'), href: '/dashboard/products', icon: LuPackage },
   ];
 
   return (

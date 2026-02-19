@@ -3,6 +3,8 @@ import { getMessages } from 'next-intl/server';
 import '../globals.css';
 import { QueryProvider } from '@/src/providers/QueryProvider';
 import { Provider } from '@/src/components/ui/provider';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
+
 export default async function LocaleLayout({
   children,
   params,
@@ -19,7 +21,9 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider messages={messages}>
           <Provider>
-            <QueryProvider>{children}</QueryProvider>
+            <QueryProvider>
+              <NuqsAdapter>{children}</NuqsAdapter>
+            </QueryProvider>
           </Provider>
         </NextIntlClientProvider>
       </body>

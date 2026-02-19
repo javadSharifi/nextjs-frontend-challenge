@@ -36,10 +36,56 @@
   "Dashboard": {
     "title": "داشبورد",
     "users": "کاربران",
-    "packages": "بسته‌ها",
-    "logout": "خروج"
+    "products": "محصولات",
+    "logout": "خروج",
+    "welcome_back": "خوش آمدید بازگشت به داشبورد"
   },
   "Auth": {
     "logout": "خروج"
+  },
+  "Table": {
+    "showing": "نمایش",
+    "of": "از",
+    "rows_per_page": "ردیف در صفحه",
+    "empty": "داده‌ای یافت نشد",
+    "error": "خطا در بارگذاری. دوباره تلاش کنید."
+  },
+  "Users": {
+    "title": "مدیریت کاربران",
+    "search_placeholder": "جستجوی کاربر...",
+    "no_data": "هیچ کاربری با این مشخصات یافت نشد.",
+    "table": {
+      "name": "نام و نام خانوادگی",
+      "email": "ایمیل",
+      "age": "سن",
+      "gender": "جنسیت",
+      "role": "نقش"
+    },
+    "pagination": {
+      "showing": "نمایش {start} تا {end} از {total} مورد",
+      "rows_per_page": "تعداد در صفحه"
+    }
+  },
+  "Common": {
+    "actions": "عملیات",
+    "edit": "ویرایش",
+    "delete": "حذف"
+  },
+  "Products": {
+    "title": "مدیریت محصولات",
+    "search_placeholder": "جستجوی نام محصول...",
+    "no_data": "هیچ محصولی با این مشخصات یافت نشد.",
+    "all_categories": "همه دسته‌بندی‌ها",
+    "table": {
+      "product": "نام محصول",
+      "category": "دسته‌بندی",
+      "price": "قیمت",
+      "stock": "موجودی",
+      "in_stock": "عدد در انبار"
+    },
+    "pagination": {
+      "rows_per_page": "تعداد در صفحه",
+      "showing": "نمایش {start} تا {end} از {total} مورد"
+    }
   }
 }
