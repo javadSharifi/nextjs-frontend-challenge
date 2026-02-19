@@ -37,6 +37,10 @@
     "title": "داشبورد",
     "users": "کاربران",
     "products": "محصولات",
+    "reports": "گزارش‌ها",
+    "settings": "تنظیمات سیستم",
+    "security": "امنیت",
+    "admin": "پنل مدیریت",
     "logout": "خروج",
     "welcome_back": "خوش آمدید بازگشت به داشبورد"
   },
@@ -52,14 +56,32 @@
   },
   "Users": {
     "title": "مدیریت کاربران",
+    "subtitle": "لیست تمامی کاربران سیستم و مدیریت دسترسی‌ها",
     "search_placeholder": "جستجوی کاربر...",
     "no_data": "هیچ کاربری با این مشخصات یافت نشد.",
+    "stats": {
+      "new_users": "کاربران جدید (هفته)",
+      "active_users": "کاربران فعال",
+      "total_users": "کل کاربران"
+    },
+    "status": {
+      "active": "فعال",
+      "inactive": "آفلاین",
+      "pending": "در انتظار"
+    },
+    "role": {
+      "manager": "مدیر فروش",
+      "support": "پشتیبانی",
+      "accountant": "حسابدار",
+      "qa": "مهندس QA",
+      "researcher": "محقق"
+    },
     "table": {
       "name": "نام و نام خانوادگی",
       "email": "ایمیل",
-      "age": "سن",
-      "gender": "جنسیت",
-      "role": "نقش"
+      "role": "نقش",
+      "status": "وضعیت",
+      "actions": "عملیات"
     },
     "pagination": {
       "showing": "نمایش {start} تا {end} از {total} مورد",
