@@ -38,14 +38,30 @@
     "users": "کاربران",
     "products": "محصولات",
     "reports": "گزارش‌ها",
-    "settings": "تنظیمات سیستم",
+    "settings": "تنظیمات",
     "security": "امنیت",
     "admin": "پنل مدیریت",
     "logout": "خروج",
-    "welcome_back": "خوش آمدید بازگشت به داشبورد"
+    "welcome_back": "خوش آمدید بازگشت به داشبورد",
+    "menu_main": "اصلی",
+    "menu_settings": "تنظیمات سیستم",
+    "profile_name": "کاربر مدیر",
+    "profile_role": "مدیر سیستم",
+    "kpi": {
+      "users": "کاربران",
+      "products": "محصولات",
+      "carts": "سبد خرید",
+      "posts": "پست‌ها",
+      "comments": "نظرات"
+    }
   },
   "Auth": {
     "logout": "خروج"
+  },
+  "Common": {
+    "actions": "عملیات",
+    "edit": "ویرایش",
+    "delete": "حذف"
   },
   "Table": {
     "showing": "نمایش",
@@ -60,54 +76,45 @@
     "search_placeholder": "جستجوی کاربر...",
     "no_data": "هیچ کاربری با این مشخصات یافت نشد.",
     "stats": {
-      "new_users": "کاربران جدید (هفته)",
-      "active_users": "کاربران فعال",
-      "total_users": "کل کاربران"
-    },
-    "status": {
-      "active": "فعال",
-      "inactive": "آفلاین",
-      "pending": "در انتظار"
-    },
-    "role": {
-      "manager": "مدیر فروش",
-      "support": "پشتیبانی",
-      "accountant": "حسابدار",
-      "qa": "مهندس QA",
-      "researcher": "محقق"
+      "total_users": "کل کاربران",
+      "admins": "مدیران",
+      "moderators": "ناظران"
     },
     "table": {
       "name": "نام و نام خانوادگی",
       "email": "ایمیل",
-      "role": "نقش",
-      "status": "وضعیت",
+      "role": "شغل / دپارتمان",
+      "status": "نقش کاربری",
       "actions": "عملیات"
     },
-    "pagination": {
-      "showing": "نمایش {start} تا {end} از {total} مورد",
-      "rows_per_page": "تعداد در صفحه"
+    "role": {
+      "admin": "ادمین",
+      "moderator": "ناظر",
+      "user": "کاربر"
     }
-  },
-  "Common": {
-    "actions": "عملیات",
-    "edit": "ویرایش",
-    "delete": "حذف"
   },
   "Products": {
     "title": "مدیریت محصولات",
     "search_placeholder": "جستجوی نام محصول...",
     "no_data": "هیچ محصولی با این مشخصات یافت نشد.",
     "all_categories": "همه دسته‌بندی‌ها",
+    "stats": {
+      "total_products": "کل محصولات",
+      "categories": "دسته‌بندی‌ها",
+      "low_stock": "کمبود موجودی"
+    },
     "table": {
       "product": "نام محصول",
       "category": "دسته‌بندی",
       "price": "قیمت",
       "stock": "موجودی",
-      "in_stock": "عدد در انبار"
+      "in_stock": "عدد در انبار",
+      "status": "وضعیت"
     },
-    "pagination": {
-      "rows_per_page": "تعداد در صفحه",
-      "showing": "نمایش {start} تا {end} از {total} مورد"
+    "status": {
+      "In Stock": "موجود",
+      "Low Stock": "کمبود موجودی",
+      "Out of Stock": "ناموجود"
     }
   }
 }

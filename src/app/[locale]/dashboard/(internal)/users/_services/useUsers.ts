@@ -6,11 +6,17 @@ export interface User {
   id: number;
   firstName: string;
   lastName: string;
+  username: string;
   email: string;
   image: string;
   age: number;
   gender: string;
-  company: { name: string; title: string };
+  company: {
+    name: string;
+    title: string;
+    department: string;
+  };
+  role: 'admin' | 'moderator' | 'user';
 }
 
 interface UsersResponse {
@@ -22,6 +28,12 @@ interface UseUsersParams {
   page: number;
   limit: number;
   q?: string;
+}
+
+interface UsersStats {
+  total: number;
+  admins: number;
+  moderators: number;
 }
 
 export const useUsers = ({ page, limit, q }: UseUsersParams) => {
@@ -45,5 +57,25 @@ export const useUsers = ({ page, limit, q }: UseUsersParams) => {
     },
     placeholderData: (prev) => prev,
     staleTime: 5000,
+  });
+};
+
+export const useUsersStats = () => {
+  return useQuery({
+    queryKey: ['users-stats'],
+    queryFn: async () => {
+      const [totalRes, adminsRes, moderatorsRes] = await Promise.all([
+        apiClient.get<UsersResponse>('/users', { params: { limit: 0, select: 'id' } }), // Just to get total count efficiently
+        apiClient.get<UsersResponse>('/users/filter', { params: { key: 'role', value: 'admin', limit: 0 } }),
+        apiClient.get<UsersResponse>('/users/filter', { params: { key: 'role', value: 'moderator', limit: 0 } }),
+      ]);
+
+      return {
+        total: totalRes.total,
+        admins: adminsRes.total,
+        moderators: moderatorsRes.total,
+      } as UsersStats;
+    },
+    staleTime: 60000, // Cache for 1 minute
   });
 };

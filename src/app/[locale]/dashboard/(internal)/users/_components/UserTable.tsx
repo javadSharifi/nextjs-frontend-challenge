@@ -1,78 +1,23 @@
-import { Avatar, Box, Text, Badge, HStack, Icon } from '@chakra-ui/react';
+import { Avatar, Box, Text, Badge, HStack } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 import { User } from '../_services/useUsers';
 import { ColumnDef, GenericTable } from '../../../_components/GenericTable';
-import { Circle } from 'lucide-react';
 
 interface UserTableProps {
   users: User[];
 }
 
-// Mock helpers for visual consistency with screenshot
-const getRole = (id: number) => {
-  const roles = ['manager', 'support', 'accountant', 'researcher', 'qa'] as const;
-  return roles[id % roles.length];
-};
-
-const getStatus = (id: number) => {
-  const statuses = ['active', 'inactive', 'pending'] as const;
-  // Make active more common
-  if (id % 5 === 0) return 'inactive';
-  if (id % 7 === 0) return 'pending';
-  return 'active';
-};
-
 const RoleBadge = ({ role }: { role: string }) => {
-  const t = useTranslations('Users.role');
   const colorMap: Record<string, string> = {
-    manager: 'blue',
-    support: 'cyan',
-    accountant: 'purple',
-    researcher: 'teal',
-    qa: 'orange',
+    admin: 'purple',
+    moderator: 'blue',
+    user: 'gray',
   };
 
   return (
-    <Badge variant="subtle" size="md" colorPalette={colorMap[role]} borderRadius="full" px="3">
-      {t(role as any)}
+    <Badge variant="subtle" size="md" colorPalette={colorMap[role] || 'gray'} borderRadius="full" px="3">
+      {role}
     </Badge>
-  );
-};
-
-const StatusBadge = ({ status }: { status: string }) => {
-  const t = useTranslations('Users.status');
-  const colorMap: Record<string, string> = {
-    active: 'green.500',
-    inactive: 'gray.500',
-    pending: 'yellow.500',
-  };
-
-  const bgMap: Record<string, string> = {
-    active: 'green.50',
-    inactive: 'gray.50',
-    pending: 'yellow.50',
-  };
-
-  const textColorMap: Record<string, string> = {
-    active: 'green.700',
-    inactive: 'gray.700',
-    pending: 'yellow.700',
-  };
-
-  return (
-    <HStack
-      gap="2"
-      bg={bgMap[status]}
-      py="1"
-      px="3"
-      borderRadius="full"
-      width="fit-content"
-    >
-      <Box boxSize="2" bg={colorMap[status]} borderRadius="full" />
-      <Text fontSize="xs" fontWeight="medium" color={textColorMap[status]}>
-        {t(status as any)}
-      </Text>
-    </HStack>
   );
 };
 
@@ -90,8 +35,7 @@ export const UserTable = ({ users }: UserTableProps) => {
           </Avatar.Root>
           <Box>
             <Text fontWeight="bold" fontSize="sm">{`${user.firstName} ${user.lastName}`}</Text>
-            <Text fontSize="xs" color="fg.muted">ID: #{user.id + 4580}</Text>
-            {/* Added offset to ID to match screenshot style e.g. 4582 */}
+            <Text fontSize="xs" color="fg.muted">@{user.username}</Text>
           </Box>
         </HStack>
       ),
@@ -101,12 +45,17 @@ export const UserTable = ({ users }: UserTableProps) => {
       render: (user) => <Text fontSize="sm" fontFamily="monospace">{user.email}</Text>,
     },
     {
-      header: t('table.role'),
-      render: (user) => <RoleBadge role={getRole(user.id)} />,
+      header: t('table.role'), // Replaced Job Title with Role or Company Title
+      render: (user) => (
+         <Box>
+            <Text fontSize="sm" fontWeight="medium">{user.company.title}</Text>
+            <Text fontSize="xs" color="fg.muted">{user.company.department}</Text>
+         </Box>
+      ),
     },
     {
-      header: t('table.status'),
-      render: (user) => <StatusBadge status={getStatus(user.id)} />,
+      header: t('table.status'), // Using Role as Status proxy since real Status doesn't exist
+      render: (user) => <RoleBadge role={user.role} />,
     },
   ];
 

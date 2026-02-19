@@ -3,37 +3,39 @@ import { Container, VStack, SimpleGrid } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 import { useTableParams } from '../../_hooks/useTableParams';
 import { UserTable } from './_components/UserTable';
-import { useUsers } from './_services/useUsers';
+import { useUsers, useUsersStats } from './_services/useUsers';
 import { PageHeader } from '../../_components/PageHeader';
 import { SearchInput } from '../../_components/SearchInput';
 import { DataList } from '../../_components/DataList';
 import { Pagination } from '../../_components/Pagination';
 import { StatsCard } from '../../_components/StatsCard';
-import { Users as UsersIcon, CheckCircle, TrendingUp } from 'lucide-react';
+import { Users as UsersIcon, ShieldCheck, UserCheck } from 'lucide-react';
 
 export default function UsersPage() {
   const t = useTranslations('Users');
   const { page, setPage, limit, setLimit, q, setSearch } = useTableParams();
+
   const { data, isLoading } = useUsers({ page, limit, q });
+  const { data: statsData, isLoading: isStatsLoading } = useUsersStats();
 
   const stats = [
     {
-      title: t('stats.new_users'),
-      value: '+۴۵',
-      icon: TrendingUp,
+      title: t('stats.total_users'),
+      value: statsData?.total || '-',
+      icon: UsersIcon,
+      colorScheme: 'blue',
+    },
+    {
+      title: t('stats.admins'),
+      value: statsData?.admins || '-',
+      icon: ShieldCheck,
       colorScheme: 'purple',
     },
     {
-      title: t('stats.active_users'),
-      value: '۹۸۵',
-      icon: CheckCircle,
+      title: t('stats.moderators'),
+      value: statsData?.moderators || '-',
+      icon: UserCheck,
       colorScheme: 'green',
-    },
-    {
-      title: t('stats.total_users'),
-      value: '۱,۲۴۰',
-      icon: UsersIcon,
-      colorScheme: 'blue',
     },
   ];
 
@@ -60,7 +62,7 @@ export default function UsersPage() {
               value={stat.value}
               icon={stat.icon}
               colorScheme={stat.colorScheme as any}
-              isLoading={isLoading}
+              isLoading={isStatsLoading}
             />
           ))}
         </SimpleGrid>

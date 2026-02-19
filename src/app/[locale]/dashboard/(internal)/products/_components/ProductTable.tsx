@@ -7,6 +7,29 @@ interface ProductTableProps {
   products: Product[];
 }
 
+const StatusBadge = ({ status }: { status: Product['availabilityStatus'] }) => {
+  const t = useTranslations('Products.status');
+
+  const colorMap: Record<Product['availabilityStatus'], string> = {
+    'In Stock': 'green',
+    'Low Stock': 'orange',
+    'Out of Stock': 'red',
+  };
+
+  // Explicit mapping to avoid dynamic key issues and 'any' usage
+  const labelMap: Record<Product['availabilityStatus'], string> = {
+    'In Stock': t('In Stock'),
+    'Low Stock': t('Low Stock'),
+    'Out of Stock': t('Out of Stock'),
+  };
+
+  return (
+    <Badge variant="subtle" size="md" colorPalette={colorMap[status] || 'gray'} borderRadius="full" px="3">
+      {labelMap[status]}
+    </Badge>
+  );
+};
+
 export const ProductTable = ({ products }: ProductTableProps) => {
   const t = useTranslations('Products');
 
@@ -43,6 +66,10 @@ export const ProductTable = ({ products }: ProductTableProps) => {
           ${p.price}
         </Text>
       ),
+    },
+    {
+      header: t('table.status'),
+      render: (p) => <StatusBadge status={p.availabilityStatus} />,
     },
     {
       header: t('table.stock'),

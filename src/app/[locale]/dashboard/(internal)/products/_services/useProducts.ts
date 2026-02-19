@@ -5,10 +5,12 @@ import { apiClient } from '../../../_lib/api-client';
 export interface Product {
   id: number;
   title: string;
+  category: string;
   price: number;
   stock: number;
-  category: string;
   thumbnail: string;
+  rating: number;
+  availabilityStatus: 'In Stock' | 'Low Stock' | 'Out of Stock'; // Added based on documentation
 }
 
 interface ProductsResponse {
@@ -27,18 +29,17 @@ export const useProducts = ({ page, limit, q, category }: UseProductsParams) => 
   return useQuery({
     queryKey: ['products', page, limit, q, category],
     queryFn: async () => {
-      let endpoint = '/products';
       const params: Record<string, string | number | undefined> = {
         limit,
         skip: (page - 1) * limit,
       };
 
+      let endpoint = '/products';
       if (q) {
         endpoint = '/products/search';
         params.q = q;
       } else if (category && category !== 'all') {
         endpoint = `/products/category/${category}`;
-        // Category endpoint doesn't support search, but we handle it via if/else
       }
 
       return apiClient.get<ProductsResponse>(endpoint, {
@@ -47,5 +48,23 @@ export const useProducts = ({ page, limit, q, category }: UseProductsParams) => 
     },
     placeholderData: (prev) => prev,
     staleTime: 5000,
+  });
+};
+
+export const useProductsStats = () => {
+  return useQuery({
+    queryKey: ['products-stats'],
+    queryFn: async () => {
+      const [totalRes, categoriesRes] = await Promise.all([
+        apiClient.get<ProductsResponse>('/products', { params: { limit: 0, select: 'id' } }), // Only total needed
+        apiClient.get<string[]>('/products/categories'),
+      ]);
+
+      return {
+        total: totalRes.total,
+        categories: categoriesRes.length,
+      };
+    },
+    staleTime: 60000,
   });
 };

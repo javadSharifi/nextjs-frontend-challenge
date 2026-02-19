@@ -4,6 +4,7 @@ import { Link } from '@/src/i18n/navigation';
 import { Stack, Text, Box, Flex, Avatar, Icon } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
+import { LucideIcon } from 'lucide-react';
 import {
   LayoutDashboard,
   Users,
@@ -31,7 +32,7 @@ export default function Sidebar() {
     { label: tDashboard('security'), href: '/dashboard/security', icon: ShieldCheck },
   ];
 
-  const renderNavItem = (item: { label: string; href: string; icon: any; exact?: boolean }) => {
+  const renderNavItem = (item: { label: string; href: string; icon: LucideIcon; exact?: boolean }) => {
     // Check active state
     const isActive = item.exact
       ? pathname.endsWith(item.href) || pathname === item.href
@@ -72,7 +73,7 @@ export default function Sidebar() {
         <Stack gap="6">
           <Box>
             <Text fontSize="xs" fontWeight="bold" color="fg.muted" mb="2" px="2">
-              اصلی
+              {tDashboard('menu_main')}
             </Text>
             <Stack gap="1">
               {MAIN_ITEMS.map(renderNavItem)}
@@ -81,7 +82,7 @@ export default function Sidebar() {
 
           <Box>
             <Text fontSize="xs" fontWeight="bold" color="fg.muted" mb="2" px="2">
-              تنظیمات
+              {tDashboard('menu_settings')}
             </Text>
             <Stack gap="1">
               {SETTINGS_ITEMS.map(renderNavItem)}
@@ -95,12 +96,12 @@ export default function Sidebar() {
         <Flex align="center" justify="space-between" mb="4">
           <Flex gap="3" align="center">
             <Avatar.Root size="sm">
-              <Avatar.Image src="https://i.pravatar.cc/150?u=reza" />
-              <Avatar.Fallback name="Reza Mohammadi" />
+              <Avatar.Image src="https://dummyjson.com/icon/emilys/128" /> {/* Use generic or dummyjson icon */}
+              <Avatar.Fallback name={tDashboard('profile_name')} />
             </Avatar.Root>
             <Box>
-              <Text fontSize="sm" fontWeight="bold">رضا محمدی</Text>
-              <Text fontSize="xs" color="fg.muted">مدیر سیستم</Text>
+              <Text fontSize="sm" fontWeight="bold">{tDashboard('profile_name')}</Text>
+              <Text fontSize="xs" color="fg.muted">{tDashboard('profile_role')}</Text>
             </Box>
           </Flex>
           <Button variant="ghost" size="sm" colorPalette="red">
