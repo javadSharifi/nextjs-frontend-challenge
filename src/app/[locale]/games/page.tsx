@@ -3,12 +3,25 @@ import { fetchGames, fetchGenres, fetchPlatforms } from './_services/games.servi
 import GamesClientView from './_components/GamesClientView';
 import HeroBanner from './_components/HeroBanner';
 import SearchBar from './_components/SearchBar';
+import FilterSidebar from './_components/FilterSidebar';
 import { getTranslations } from 'next-intl/server';
 import type { SearchParams } from 'nuqs/server';
 
 interface IGamePageProps {
   params: Promise<{ locale: string }>;
   searchParams: Promise<SearchParams>;
+}
+
+export async function generateMetadata() {
+  return {
+    title: 'کتابخانه بازی‌ها | NexusGames',
+    description: 'مرور و فیلتر هزاران بازی ویدیویی با امتیازات و اطلاعات کامل',
+    openGraph: {
+      title: 'کتابخانه بازی‌ها | NexusGames',
+      description: 'مرور و فیلتر هزاران بازی ویدیویی',
+      type: 'website',
+    },
+  };
 }
 
 const GamePage = async ({ searchParams }: IGamePageProps) => {
@@ -59,8 +72,12 @@ const GamePage = async ({ searchParams }: IGamePageProps) => {
       {/* Client View (Grid + Filters + React Query) */}
       <GamesClientView
         initialData={gamesData}
-        genres={genresData.results}
-        platforms={platformsData.results}
+        sidebar={
+          <FilterSidebar
+            genres={genresData.results}
+            platforms={platformsData.results}
+          />
+        }
       />
     </div>
   );

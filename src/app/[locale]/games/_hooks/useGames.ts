@@ -1,46 +1,33 @@
 'use client';
-
 import { useQuery } from '@tanstack/react-query';
 import { useGameParams } from './useGameParams';
-import { fetchGames } from '../_services/games.service';
 import type { IGamesResponse } from '../_services/games.types';
 
-interface IUseGamesProps {
-  initialData?: IGamesResponse;
-}
+// This function must be callable from client side — create a route handler or use server actions
+export const useGames = (initialData: IGamesResponse) => {
+  const { search, genres, platforms, ordering, metacritic_min, metacritic_max, page } = useGameParams();
 
-export function useGames(initialData?: IGamesResponse) {
-  const { search, genres, platforms, ordering, metacriticMin, metacriticMax, page, tags } = useGameParams();
-
-  const metacriticRange = (metacriticMin || 0) > 0 || (metacriticMax || 100) < 100
-    ? `${metacriticMin || 0},${metacriticMax || 100}`
+  const metacritic = metacritic_min > 0 || metacritic_max < 100
+    ? `${metacritic_min},${metacritic_max}`
     : undefined;
 
-  const queryKey = [
-    'games',
-    search,
-    genres,
-    platforms,
-    ordering,
-    metacriticRange,
-    page,
-    tags
-  ];
-
-  const queryFn = () => fetchGames({
-    search: search || undefined,
-    genres: genres || undefined,
-    platforms: platforms || undefined,
-    ordering: ordering || '-rating',
-    metacritic: metacriticRange,
-    page: page || 1,
-    page_size: 20,
-    tags: tags || undefined,
-  });
-
   return useQuery({
-    queryKey,
-    queryFn,
+    queryKey: ['games', search, genres, platforms, ordering, metacritic_min, metacritic_max, page],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (search) params.set('search', search);
+      if (genres) params.set('genres', genres);
+      if (platforms) params.set('platforms', platforms);
+      if (ordering) params.set('ordering', ordering);
+      if (metacritic) params.set('metacritic', metacritic);
+      params.set('page', String(page));
+      params.set('page_size', '20');
+
+      const res = await fetch(`/api/games?${params.toString()}`);
+      if (!res.ok) throw new Error('Failed to fetch');
+      return res.json() as Promise<IGamesResponse>;
+    },
     initialData,
+    staleTime: 60_000,
   });
-}
+};

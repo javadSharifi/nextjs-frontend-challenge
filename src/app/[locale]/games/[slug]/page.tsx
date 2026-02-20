@@ -10,6 +10,23 @@ interface IGameDetailPageProps {
   params: Promise<{ locale: string; slug: string }>;
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const game = await fetchGameBySlug(slug).catch(() => null);
+  if (!game) return { title: 'بازی یافت نشد | NexusGames' };
+
+  return {
+    title: `${game.name} | NexusGames`,
+    description: game.description_raw?.slice(0, 155) || `اطلاعات کامل بازی ${game.name}`,
+    openGraph: {
+      title: `${game.name} | NexusGames`,
+      description: game.description_raw?.slice(0, 155),
+      images: game.background_image ? [{ url: game.background_image }] : [],
+      type: 'website',
+    },
+  };
+}
+
 const GameDetailPage = async ({ params }: IGameDetailPageProps) => {
   const { slug } = await params;
   const t = await getTranslations('game');

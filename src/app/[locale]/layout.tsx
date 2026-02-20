@@ -26,6 +26,11 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
+export const metadata = {
+  title: { default: 'NexusGames', template: '%s | NexusGames' },
+  description: 'پلتفرم بازی‌های ویدیویی',
+};
+
 export default async function LocaleLayout({
   children,
   params,
@@ -44,7 +49,7 @@ export default async function LocaleLayout({
       dir={locale === 'fa' ? 'rtl' : 'ltr'}
       className={`${rajdhani.variable} ${orbitron.variable} ${spaceGrotesk.variable}`}
     >
-      <body>
+      <body suppressHydrationWarning>
         <NuqsAdapter>
           <NextIntlClientProvider messages={messages}>
             <QueryProvider>{children}</QueryProvider>

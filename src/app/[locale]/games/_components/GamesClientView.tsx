@@ -1,33 +1,27 @@
 'use client';
-
-import { useTranslations } from 'next-intl';
-import FilterSidebar from './FilterSidebar';
+import { useGames } from '../_hooks/useGames';
 import GameGrid from './GameGrid';
+import type { IGamesResponse } from '../_services/games.types';
+import { useTranslations } from 'next-intl';
 import SortDropdown from './SortDropdown';
 import ViewToggle from './ViewToggle';
-import { useGames } from '../_hooks/useGames';
-import type { IGamesResponse, IGenre, IPlatform } from '../_services/games.types';
 import { useGameParams } from '../_hooks/useGameParams';
 
 interface IGamesClientViewProps {
   initialData: IGamesResponse;
-  genres: IGenre[];
-  platforms: IPlatform[];
+  sidebar: React.ReactNode;
 }
 
-const GamesClientView = ({ initialData, genres, platforms }: IGamesClientViewProps) => {
+const GamesClientView = ({ initialData, sidebar }: IGamesClientViewProps) => {
   const t = useTranslations('game');
-  const { data: gamesData } = useGames(initialData);
+  const { data: gamesData, isLoading } = useGames(initialData);
   const { page } = useGameParams();
 
   return (
     <div className="container mx-auto flex gap-6 px-4 py-8">
       {/* Sidebar */}
       <aside className="w-64 shrink-0 hidden lg:block">
-        <FilterSidebar
-          genres={genres}
-          platforms={platforms}
-        />
+        {sidebar}
       </aside>
 
       {/* Content */}
@@ -50,9 +44,10 @@ const GamesClientView = ({ initialData, genres, platforms }: IGamesClientViewPro
 
         {/* Grid */}
         <GameGrid
-          games={gamesData?.results || []}
-          totalCount={gamesData?.count || 0}
-          currentPage={page || 1}
+          games={gamesData?.results ?? []}
+          totalCount={gamesData?.count ?? 0}
+          currentPage={page ?? 1}
+          isLoading={isLoading}
         />
       </main>
     </div>

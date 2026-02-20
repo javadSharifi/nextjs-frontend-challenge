@@ -15,15 +15,14 @@ const GameScreenshots = ({ screenshots, gameName }: IGameScreenshotsProps) => {
   const [selected, setSelected] = useState<string | null>(null);
 
   useEffect(() => {
-    if (selected) {
-      document.body.style.overflow = 'hidden';
-      const handleKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelected(null); };
-      window.addEventListener('keydown', handleKey);
-      return () => {
-        document.body.style.overflow = '';
-        window.removeEventListener('keydown', handleKey);
-      };
-    }
+    if (!selected) return;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelected(null); };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
   }, [selected]);
 
   return (
@@ -43,24 +42,28 @@ const GameScreenshots = ({ screenshots, gameName }: IGameScreenshotsProps) => {
         ))}
       </div>
 
-      {/* Lightbox */}
+      {/* Lightbox overlay — full screen dark backdrop */}
       {selected && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
           onClick={() => setSelected(null)}
         >
-          <button
-            className="absolute right-4 top-4 rounded-full bg-primary p-2 text-white hover:bg-primary-hover transition-colors"
-            onClick={() => setSelected(null)}
-          >
+          {/* Close button */}
+          <button className="absolute top-4 right-4 z-10 rounded-full bg-primary p-2 text-white">
             <X size={20} />
           </button>
-          <img
-            src={selected}
-            alt="screenshot"
-            className="max-h-[90vh] max-w-[90vw] rounded-xl object-contain"
+
+          {/* Image container — constrained size, centered */}
+          <div
+            className="relative max-h-[85vh] max-w-[85vw] w-full h-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
-          />
+          >
+            <img
+              src={selected}
+              alt="screenshot"
+              className="max-h-[85vh] max-w-[85vw] w-auto h-auto object-contain rounded-xl shadow-2xl"
+            />
+          </div>
         </div>
       )}
     </div>
