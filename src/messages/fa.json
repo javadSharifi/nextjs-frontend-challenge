@@ -123,5 +123,48 @@
       "Low Stock": "کمبود موجودی",
       "Out of Stock": "ناموجود"
     }
+  },
+  "game": {
+    "search": {
+      "placeholder": "جستجوی بازی، ژانر، تگ..."
+    },
+    "hero": {
+      "newRelease": "انتشار جدید",
+      "playNow": "پخش",
+      "details": "جزئیات"
+    },
+    "list": {
+      "title": "همه بازی‌ها",
+      "count": "{count} بازی",
+      "loadMore": "بارگذاری بیشتر",
+      "loading": "در حال بارگذاری..."
+    },
+    "filters": {
+      "title": "فیلترها",
+      "reset": "پاکسازی",
+      "genre": "ژانر",
+      "platform": "پلتفرم",
+      "metacritic": "امتیاز متاکریتیک"
+    },
+    "sort": {
+      "rating": "امتیاز",
+      "released": "تاریخ انتشار",
+      "metacritic": "متاکریتیک",
+      "nameAsc": "نام الف-ی",
+      "nameDesc": "نام ی-الف",
+      "added": "تازه اضافه‌شده"
+    },
+    "detail": {
+      "about": "درباره بازی",
+      "screenshots": "تصاویر بازی",
+      "similar": "بازی‌های مشابه",
+      "info": {
+        "title": "اطلاعات بازی",
+        "playtime": "میانگین زمان بازی",
+        "esrb": "رده‌بندی سنی",
+        "tags": "تگ‌ها",
+        "website": "وب‌سایت رسمی"
+      }
+    }
   }
 }
