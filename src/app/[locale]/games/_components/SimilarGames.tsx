@@ -17,14 +17,14 @@ const SimilarGames = ({ games }: ISimilarGamesProps) => {
               {game.background_image ? (
                 <Image src={game.background_image} alt={game.name} fill className="object-cover" />
               ) : (
-                <div className="h-full w-full bg-[var(--color-bg-elevated)]" />
+                <div className="h-full w-full bg-bg-elevated" />
               )}
             </div>
             <div className="p-3">
               <p className="font-display text-sm font-bold text-white line-clamp-1">{game.name}</p>
               <div className="mt-1 flex items-center gap-1">
-                <Star size={11} className="fill-[var(--color-rating-gold)] text-[var(--color-rating-gold)]" />
-                <span className="text-xs text-[var(--color-text-secondary)]">{game.rating.toFixed(1)}</span>
+                <Star size={11} className="fill-rating-gold text-rating-gold" />
+                <span className="text-xs text-text-secondary">{game.rating.toFixed(1)}</span>
               </div>
             </div>
           </div>

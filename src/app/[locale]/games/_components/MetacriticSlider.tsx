@@ -1,38 +1,41 @@
 'use client';
 
-import { useQueryState, parseAsInteger } from 'nuqs';
 import { useTranslations } from 'next-intl';
+import { useGameParams } from '../_hooks/useGameParams';
 
 const MetacriticSlider = () => {
   const t = useTranslations('game');
-  const [min, setMin] = useQueryState('metacritic_min', parseAsInteger.withDefault(0));
-  const [max, setMax] = useQueryState('metacritic_max', parseAsInteger.withDefault(100));
+  const { metacriticMin, setMetacriticMin, metacriticMax, setMetacriticMax } = useGameParams();
+
+  // Use local state or default to avoid nulls in UI
+  const min = metacriticMin ?? 0;
+  const max = metacriticMax ?? 100;
 
   return (
     <div>
-      <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)]">
+      <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-text-muted">
         {t('filters.metacritic')}
       </h3>
       <div className="px-1">
         <div className="mb-2 flex items-center justify-between">
-          <span className="text-sm text-[var(--color-text-secondary)]">{min}</span>
-          <span className="text-sm font-bold text-[var(--color-primary)]">{max}+</span>
+          <span className="text-sm text-text-secondary">{min}</span>
+          <span className="text-sm font-bold text-primary">{max}+</span>
         </div>
         <input
           type="range"
           min={0}
           max={100}
           value={min}
-          onChange={(e) => setMin(Number(e.target.value))}
-          className="w-full accent-[var(--color-primary)]"
+          onChange={(e) => setMetacriticMin(Number(e.target.value))}
+          className="w-full accent-primary"
         />
         <input
           type="range"
           min={0}
           max={100}
           value={max}
-          onChange={(e) => setMax(Number(e.target.value))}
-          className="w-full accent-[var(--color-primary)]"
+          onChange={(e) => setMetacriticMax(Number(e.target.value))}
+          className="w-full accent-primary"
         />
       </div>
     </div>

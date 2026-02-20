@@ -1,21 +1,21 @@
 'use client';
 
-import { useQueryState, parseAsStringEnum } from 'nuqs';
 import { Grid3X3, List } from 'lucide-react';
+import { useGameParams } from '../_hooks/useGameParams';
 
 const ViewToggle = () => {
-  const [view, setView] = useQueryState('view', parseAsStringEnum(['grid', 'list']).withDefault('grid'));
+  const { view, setView } = useGameParams();
 
   return (
-    <div className="flex overflow-hidden rounded-lg border border-[var(--color-border-subtle)]">
+    <div className="flex overflow-hidden rounded-lg border border-border-subtle">
       {(['grid', 'list'] as const).map((v) => (
         <button
           key={v}
           onClick={() => setView(v)}
           className={`p-2 transition-colors ${
             view === v
-              ? 'bg-[var(--color-primary)] text-white'
-              : 'text-[var(--color-text-muted)] hover:text-white'
+              ? 'bg-primary text-white'
+              : 'text-text-muted hover:text-white'
           }`}
         >
           {v === 'grid' ? <Grid3X3 size={16} /> : <List size={16} />}

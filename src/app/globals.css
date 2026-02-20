@@ -49,9 +49,6 @@
   --ring: 240 4.9% 83.9%;
 }
 
-/* در v4 تمام کانفیگ تم اینجا انجام می‌شود.
-  ما متغیرهای CSS را به Utility Classهای تیلویند مپ می‌کنیم.
-*/
 @theme {
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -105,39 +102,33 @@
     }
   }
 
-  /* === NexusGames Color Palette === */
+  /* === NexusGames Color Palette (Utility Classes) === */
 
-  /* Backgrounds */
-  --color-bg-base: #0a0a0a;
-  --color-bg-surface: #111111;
-  --color-bg-elevated: #1a0f0f;
-  --color-bg-overlay: #120808;
-
-  /* Glass Effect Colors */
-  --color-glass-bg: rgba(20, 10, 10, 0.6);
-  --color-glass-border: rgba(255, 255, 255, 0.05);
-  --color-glass-card: rgba(30, 30, 30, 0.4);
-  --color-glass-hover-border: rgba(230, 55, 67, 0.4);
-
-  /* Primary / Accent - Crimson Red */
   --color-primary: #e63743;
   --color-primary-hover: #ff2233;
   --color-primary-muted: rgba(230, 55, 67, 0.15);
   --color-primary-glow: rgba(230, 55, 67, 0.3);
   --color-primary-glow-strong: rgba(230, 55, 67, 0.5);
 
-  /* Text */
+  --color-bg-base: #0a0a0a;
+  --color-bg-surface: #111111;
+  --color-bg-elevated: #1a0f0f;
+  --color-bg-overlay: #120808;
+
+  --color-glass-bg: rgba(20, 10, 10, 0.6);
+  --color-glass-card: rgba(30, 30, 30, 0.4);
+  --color-glass-border: rgba(255, 255, 255, 0.05);
+  --color-glass-hover-border: rgba(230, 55, 67, 0.4);
+
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+  --color-border-default: rgba(255, 255, 255, 0.1);
+  --color-border-accent: rgba(230, 55, 67, 0.4);
+
   --color-text-primary: #ffffff;
   --color-text-secondary: #a0a0a0;
   --color-text-muted: #666666;
   --color-text-accent: #e63743;
 
-  /* Borders */
-  --color-border-subtle: rgba(255, 255, 255, 0.05);
-  --color-border-default: rgba(255, 255, 255, 0.1);
-  --color-border-accent: rgba(230, 55, 67, 0.4);
-
-  /* Rating Colors */
   --color-rating-gold: #f59e0b;
   --color-metacritic-high: #6dc849;
   --color-metacritic-mid: #fc9e00;
@@ -157,7 +148,7 @@
   }
 }
 
-/* Utility classes */
+/* Utility classes that use the theme variables */
 .glass-panel {
   background: var(--color-glass-bg);
   backdrop-filter: blur(12px);

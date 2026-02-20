@@ -25,7 +25,7 @@ const GameDetailPage = async ({ params }: IGameDetailPageProps) => {
   if (!game) notFound();
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg-base)]">
+    <div className="min-h-screen bg-bg-base">
       {/* Cinematic Hero */}
       <GameDetailHero game={game} />
 
@@ -40,7 +40,7 @@ const GameDetailPage = async ({ params }: IGameDetailPageProps) => {
                 <h2 className="font-display mb-4 text-xl font-bold text-white">
                   {t('detail.about')}
                 </h2>
-                <p className="text-[var(--color-text-secondary)] leading-relaxed line-clamp-6">
+                <p className="text-text-secondary leading-relaxed line-clamp-6">
                   {game.description_raw}
                 </p>
               </div>

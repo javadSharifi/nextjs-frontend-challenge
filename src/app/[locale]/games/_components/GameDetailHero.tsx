@@ -9,10 +9,10 @@ interface IGameDetailHeroProps {
 const GameDetailHero = ({ game }: IGameDetailHeroProps) => {
   const metacriticColor =
     game.metacritic && game.metacritic >= 75
-      ? 'bg-[var(--color-metacritic-high)] text-black'
+      ? 'bg-metacritic-high text-black'
       : game.metacritic && game.metacritic >= 50
-      ? 'bg-[var(--color-metacritic-mid)] text-black'
-      : 'bg-[var(--color-metacritic-low)] text-white';
+      ? 'bg-metacritic-mid text-black'
+      : 'bg-metacritic-low text-white';
 
   return (
     <div className="relative">
@@ -27,7 +27,7 @@ const GameDetailHero = ({ game }: IGameDetailHeroProps) => {
             priority
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg-base)] via-[var(--color-bg-base)]/60 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg-base via-bg-base/60 to-black/30" />
       </div>
 
       {/* Floating Card */}
@@ -51,12 +51,12 @@ const GameDetailHero = ({ game }: IGameDetailHeroProps) => {
                 </span>
               )}
               <div className="flex items-center gap-1">
-                <Star size={16} className="fill-[var(--color-rating-gold)] text-[var(--color-rating-gold)]" />
+                <Star size={16} className="fill-rating-gold text-rating-gold" />
                 <span className="text-white font-bold">{game.rating.toFixed(1)}</span>
-                <span className="text-[var(--color-text-muted)] text-sm">({game.ratings_count?.toLocaleString()})</span>
+                <span className="text-text-muted text-sm">({game.ratings_count?.toLocaleString()})</span>
               </div>
               {game.released && (
-                <span className="text-sm text-[var(--color-text-secondary)]">
+                <span className="text-sm text-text-secondary">
                   {new Date(game.released).toLocaleDateString()}
                 </span>
               )}
@@ -67,7 +67,7 @@ const GameDetailHero = ({ game }: IGameDetailHeroProps) => {
               {game.platforms?.map((p) => (
                 <span
                   key={p.platform.id}
-                  className="rounded-full border border-[var(--color-border-default)] px-3 py-1 text-xs text-[var(--color-text-secondary)]"
+                  className="rounded-full border border-border-default px-3 py-1 text-xs text-text-secondary"
                 >
                   {p.platform.name}
                 </span>
@@ -77,12 +77,12 @@ const GameDetailHero = ({ game }: IGameDetailHeroProps) => {
             {/* Developer / Publisher */}
             <div className="flex flex-wrap gap-4 text-sm">
               {game.developers && game.developers.length > 0 && (
-                <span className="text-[var(--color-text-muted)]">
+                <span className="text-text-muted">
                   Dev: <span className="text-white">{game.developers.map((d) => d.name).join(', ')}</span>
                 </span>
               )}
               {game.publishers && game.publishers.length > 0 && (
-                <span className="text-[var(--color-text-muted)]">
+                <span className="text-text-muted">
                   Pub: <span className="text-white">{game.publishers.map((p) => p.name).join(', ')}</span>
                 </span>
               )}
@@ -93,7 +93,7 @@ const GameDetailHero = ({ game }: IGameDetailHeroProps) => {
               {game.genres?.map((g) => (
                 <span
                   key={g.id}
-                  className="rounded bg-[var(--color-primary-muted)] px-2.5 py-1 text-xs text-[var(--color-primary)]"
+                  className="rounded bg-primary-muted px-2.5 py-1 text-xs text-primary"
                 >
                   {g.name}
                 </span>

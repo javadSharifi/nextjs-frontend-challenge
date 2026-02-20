@@ -1,3 +1,5 @@
+'use server';
+
 import { IGame, IGamesResponse, IGameFilters, IGenre, IPlatform } from './games.types';
 
 const BASE_URL = process.env.RAWG_BASE_URL || 'https://api.rawg.io/api';
