@@ -123,5 +123,27 @@
       "Low Stock": "کمبود موجودی",
       "Out of Stock": "ناموجود"
     }
+  },
+  "GamePage": {
+    "title": "فروشگاه بازی‌ها"
+  },
+  "GameSectionHeader": {
+    "games_found": "بازی یافت شد"
+  },
+  "GameFilters": {
+    "search_placeholder": "جستجوی بازی...",
+    "all_genres": "همه ژانرها",
+    "all_platforms": "همه پلتفرم‌ها",
+    "sort_by": "مرتب‌سازی",
+    "sort_released_desc": "تاریخ انتشار (جدیدترین)",
+    "sort_released_asc": "تاریخ انتشار (قدیمی‌ترین)",
+    "sort_rating_desc": "امتیاز (بالا به پایین)",
+    "sort_rating_asc": "امتیاز (پایین به بالا)",
+    "sort_name_asc": "نام (A-Z)",
+    "sort_name_desc": "نام (Z-A)"
+  },
+  "GameCard": {
+    "rating": "امتیاز",
+    "released": "تاریخ انتشار"
   }
 }
