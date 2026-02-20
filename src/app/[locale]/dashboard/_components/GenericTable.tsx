@@ -15,11 +15,11 @@ interface GenericTableProps<T> {
   showActions?: boolean;
 }
 
-export function GenericTable<T extends { id: string | number }>({
+const GenericTable = <T extends { id: string | number }>({
   data,
   columns,
   showActions = true,
-}: GenericTableProps<T>) {
+}: GenericTableProps<T>) => {
   const t = useTranslations('Common');
 
   return (
@@ -66,4 +66,5 @@ export function GenericTable<T extends { id: string | number }>({
       </Table.Root>
     </Box>
   );
-}
+};
+export default GenericTable;

@@ -19,13 +19,13 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning dir={locale === 'fa' ? 'rtl' : 'ltr'}>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          <Provider>
-            <QueryProvider>
-              <NuqsAdapter>{children}</NuqsAdapter>
-            </QueryProvider>
-          </Provider>
-        </NextIntlClientProvider>
+        <NuqsAdapter>
+          <NextIntlClientProvider messages={messages}>
+            <Provider>
+              <QueryProvider>{children}</QueryProvider>
+            </Provider>
+          </NextIntlClientProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );

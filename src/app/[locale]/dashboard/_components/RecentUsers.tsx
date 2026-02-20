@@ -1,37 +1,42 @@
-// src/app/[locale]/dashboard/_components/RecentUsers.tsx
-import { Avatar, Group, Text, Box } from '@chakra-ui/react';
+import { Avatar, Text, Box, HStack, Badge } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
-import { ColumnDef, GenericTable } from './GenericTable';
+import { User } from '../(internal)/users/_services/useUsers';
+import GenericTable, { ColumnDef } from './GenericTable';
 
-interface UserSummary {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  image: string;
+interface RecentUsersProps {
+  users: User[];
+  isLoading: boolean;
 }
 
-export const RecentUsers = ({ users, isLoading }: { users: UserSummary[]; isLoading: boolean }) => {
-  const t = useTranslations();
+const RecentUsers = ({ users, isLoading }: RecentUsersProps) => {
+  const t = useTranslations('Users');
 
-  const columns: ColumnDef<UserSummary>[] = [
+  const columns: ColumnDef<User>[] = [
     {
-      header: t('Users.table.name'),
+      header: t('table.name'),
       render: (user) => (
-        <Group gap="3">
+        <HStack gap="3">
           <Avatar.Root size="xs">
             <Avatar.Image src={user.image} />
             <Avatar.Fallback name={user.firstName} />
           </Avatar.Root>
           <Box>
-            <Text fontWeight="medium" fontSize="xs" color="fg.default">
+            <Text fontWeight="medium" fontSize="sm" color="fg.default">
               {`${user.firstName} ${user.lastName}`}
             </Text>
-            <Text fontSize="10px" color="fg.muted">
+            <Text fontSize="xs" color="fg.muted">
               {user.email}
             </Text>
           </Box>
-        </Group>
+        </HStack>
+      ),
+    },
+    {
+      header: t('table.role'),
+      render: (user) => (
+        <Badge size="xs" variant="subtle" colorPalette={user.role === 'admin' ? 'purple' : 'gray'}>
+          {user.role}
+        </Badge>
       ),
     },
   ];
@@ -42,3 +47,4 @@ export const RecentUsers = ({ users, isLoading }: { users: UserSummary[]; isLoad
     </Box>
   );
 };
+export default RecentUsers;

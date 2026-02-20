@@ -1,11 +1,16 @@
 'use client';
+
 import { Button } from '@/src/components/ui/button';
 import { ColorModeButton } from '@/src/components/ui/color-mode';
 import { Flex, Text, HStack } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
-import { LuMenu, LuBell } from 'react-icons/lu';
+import { Menu, Bell } from 'lucide-react';
 
-export default function Header() {
+interface HeaderProps {
+  onSidebarOpen?: () => void;
+}
+
+const Header = ({ onSidebarOpen }: HeaderProps) => {
   const t = useTranslations('Dashboard');
 
   return (
@@ -19,20 +24,28 @@ export default function Header() {
       borderBottomWidth="1px"
     >
       <HStack gap="4">
-        <Button variant="ghost" size="sm" display={{ base: 'flex', md: 'none' }}>
-          <LuMenu />
+        <Button
+          variant="ghost"
+          size="sm"
+          display={{ base: 'flex', md: 'none' }}
+          onClick={onSidebarOpen}
+          aria-label="Open Menu"
+        >
+          <Menu size={20} />
         </Button>
+
         <Text fontWeight="bold" fontSize="lg">
           {t('title')}
         </Text>
       </HStack>
 
       <HStack gap="3">
-        <Button variant="ghost" size="sm" rounded="full">
-          <LuBell />
+        <Button variant="ghost" size="sm" rounded="full" aria-label="Notifications">
+          <Bell size={20} />
         </Button>
         <ColorModeButton />
       </HStack>
     </Flex>
   );
-}
+};
+export default Header;

@@ -48,7 +48,6 @@ export default function LoginPage() {
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack gap={5}>
-              {/* Username */}
               <Stack gap={1.5}>
                 <Text
                   fontSize="sm"
@@ -83,7 +82,6 @@ export default function LoginPage() {
                 )}
               </Stack>
 
-              {/* Password */}
               <Stack gap={1.5}>
                 <Text
                   fontSize="sm"
@@ -119,7 +117,6 @@ export default function LoginPage() {
                 )}
               </Stack>
 
-              {/* API Error */}
               {apiError && (
                 <Box
                   p={3}

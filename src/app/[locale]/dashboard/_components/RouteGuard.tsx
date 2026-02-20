@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useRouter, usePathname } from '@/src/i18n/navigation';
 import { Center, Spinner } from '@chakra-ui/react';
-import { useAuthUser } from '../_services/useLogin'; // اصلاح مسیر بر اساس ساختار شما
+import { useAuthUser } from '../_services/useLogin';
 
 interface RouteGuardProps {
   children: React.ReactNode;
@@ -12,13 +12,18 @@ interface RouteGuardProps {
 const GUEST_ONLY_ROUTES = ['/dashboard/login'];
 const DEFAULT_AUTH_REDIRECT = '/dashboard';
 
-export const RouteGuard = ({ children }: RouteGuardProps) => {
+const RouteGuard = ({ children }: RouteGuardProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const { data: user, isLoading } = useAuthUser();
+  const isMounted = useRef(false);
 
   useEffect(() => {
-    if (isLoading) return;
+    isMounted.current = true;
+  }, []);
+
+  useEffect(() => {
+    if (isLoading || !isMounted.current) return;
 
     const isGuestRoute = GUEST_ONLY_ROUTES.includes(pathname);
 
@@ -38,10 +43,10 @@ export const RouteGuard = ({ children }: RouteGuardProps) => {
   }
 
   const isGuestRoute = GUEST_ONLY_ROUTES.includes(pathname);
-
   if (!user && !isGuestRoute) return null;
-
   if (user && isGuestRoute) return null;
 
   return <>{children}</>;
 };
+
+export default RouteGuard;

@@ -27,7 +27,6 @@ async function request<T>(endpoint: string, options: ApiClientOptions = {}): Pro
 
   const url = new URL(`${BASE_URL}${endpoint}`);
 
-  // مدیریت هوشمند Query Parameters
   if (options.params) {
     Object.entries(options.params).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {

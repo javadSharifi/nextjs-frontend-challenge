@@ -5,34 +5,36 @@ import { apiClient } from '../../../_lib/api-client';
 export interface Product {
   id: number;
   title: string;
+  category: string;
   price: number;
   stock: number;
-  category: string;
   thumbnail: string;
+  rating: number;
+  availabilityStatus: 'In Stock' | 'Low Stock' | 'Out of Stock';
 }
 
 interface ProductsResponse {
   products: Product[];
   total: number;
 }
-interface ProductQueryParams {
+
+interface UseProductsParams {
+  page: number;
   limit: number;
-  skip: number;
   q?: string;
+  category?: string;
 }
 
-export const useProducts = (page: number, limit: number, q: string, category: string) => {
+export const useProducts = ({ page, limit, q, category }: UseProductsParams) => {
   return useQuery({
     queryKey: ['products', page, limit, q, category],
     queryFn: async () => {
-      let endpoint = '/products';
-
-      // مقداردهی اولیه با تایپ مشخص به جای any
-      const params: ProductQueryParams = {
+      const params: Record<string, string | number | undefined> = {
         limit,
         skip: (page - 1) * limit,
       };
 
+      let endpoint = '/products';
       if (q) {
         endpoint = '/products/search';
         params.q = q;
@@ -41,9 +43,28 @@ export const useProducts = (page: number, limit: number, q: string, category: st
       }
 
       return apiClient.get<ProductsResponse>(endpoint, {
-        params: params as unknown as Record<string, string | number | boolean | undefined>,
+        params,
       });
     },
-    placeholderData: (previousData) => previousData,
+    placeholderData: (prev) => prev,
+    staleTime: 5000,
+  });
+};
+
+export const useProductsStats = () => {
+  return useQuery({
+    queryKey: ['products-stats'],
+    queryFn: async () => {
+      const [totalRes, categoriesRes] = await Promise.all([
+        apiClient.get<ProductsResponse>('/products', { params: { limit: 0, select: 'id' } }),
+        apiClient.get<string[]>('/products/categories'),
+      ]);
+
+      return {
+        total: totalRes.total,
+        categories: categoriesRes.length,
+      };
+    },
+    staleTime: 60000,
   });
 };
