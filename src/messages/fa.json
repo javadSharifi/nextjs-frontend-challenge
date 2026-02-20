@@ -145,5 +145,19 @@
   "GameCard": {
     "rating": "امتیاز",
     "released": "تاریخ انتشار"
+  },
+  "GameDetail": {
+    "description": "توضیحات",
+    "read_more": "بیشتر بخوانید",
+    "show_less": "نمایش کمتر",
+    "gallery": "گالری تصاویر",
+    "info": "اطلاعات بازی",
+    "released": "تاریخ انتشار",
+    "website": "وب‌سایت",
+    "link": "لینک",
+    "publishers": "ناشران",
+    "developers": "توسعه‌دهندگان",
+    "similar_games": "بازی‌های مشابه",
+    "no_description": "توضیحاتی موجود نیست."
   }
 }

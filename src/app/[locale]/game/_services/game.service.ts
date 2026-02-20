@@ -7,7 +7,7 @@ if (!API_KEY) {
   console.warn('RAWG API Key is missing. Please set NEXT_PUBLIC_RAWG_API_KEY in your .env file.');
 }
 
-async function fetchFromRawg<T>(endpoint: string, params: Record<string, string | number | undefined> = {}): Promise<T> {
+export async function fetchFromRawg<T>(endpoint: string, params: Record<string, string | number | undefined> = {}): Promise<T> {
   const url = new URL(`${RAWG_BASE_URL}/${endpoint}`);
 
   if (API_KEY) {
