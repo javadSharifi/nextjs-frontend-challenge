@@ -6,11 +6,11 @@ import { Flex, Text, HStack } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 import { Menu, Bell } from 'lucide-react';
 
-interface HeaderProps {
+interface IHeaderProps {
   onSidebarOpen?: () => void;
 }
 
-const Header = ({ onSidebarOpen }: HeaderProps) => {
+const Header = ({ onSidebarOpen }: IHeaderProps) => {
   const t = useTranslations('Dashboard');
 
   return (

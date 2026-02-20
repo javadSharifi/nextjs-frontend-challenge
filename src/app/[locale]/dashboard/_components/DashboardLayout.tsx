@@ -5,7 +5,11 @@ import { useState } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+interface IDashboardLayoutProps {
+  children: React.ReactNode;
+}
+
+const DashboardLayout = ({ children }: IDashboardLayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -14,7 +18,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <Sidebar />
       </Box>
 
-      <Drawer.Root open={isOpen} onOpenChange={(e) => setIsOpen(e.open)} placement="bottom">
+      <Drawer.Root open={isOpen} onOpenChange={(e) => setIsOpen(e.open)} placement="start">
         <Drawer.Backdrop />
         <Drawer.Positioner>
           <Drawer.Content>

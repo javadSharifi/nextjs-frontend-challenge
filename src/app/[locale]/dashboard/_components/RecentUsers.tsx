@@ -2,13 +2,14 @@ import { Avatar, Text, Box, HStack, Badge } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 import { User } from '../(internal)/users/_services/useUsers';
 import GenericTable, { ColumnDef } from './GenericTable';
+import DataList from './DataList';
 
-interface RecentUsersProps {
+interface IRecentUsersProps {
   users: User[];
   isLoading: boolean;
 }
 
-const RecentUsers = ({ users, isLoading }: RecentUsersProps) => {
+const RecentUsers = ({ users, isLoading }: IRecentUsersProps) => {
   const t = useTranslations('Users');
 
   const columns: ColumnDef<User>[] = [
@@ -43,7 +44,9 @@ const RecentUsers = ({ users, isLoading }: RecentUsersProps) => {
 
   return (
     <Box minH="200px">
-      <GenericTable data={users} columns={columns} isLoading={isLoading} showActions={false} />
+      <DataList isLoading={isLoading} isEmpty={users.length === 0}>
+        <GenericTable data={users} columns={columns} isLoading={isLoading} showActions={false} />
+      </DataList>
     </Box>
   );
 };

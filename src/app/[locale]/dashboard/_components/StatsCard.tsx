@@ -3,7 +3,7 @@ import { LucideIcon } from 'lucide-react';
 
 export type StatsCardColorScheme = 'purple' | 'green' | 'blue' | 'orange' | 'red';
 
-interface StatsCardProps {
+interface IStatsCardProps {
   title: string;
   value: string | number;
   icon: LucideIcon;
@@ -39,7 +39,7 @@ const colorMap: Record<StatsCardColorScheme, { bg: string; color: string; valueC
   },
 };
 
-const StatsCard = ({ title, value, icon, colorScheme, isLoading }: StatsCardProps) => {
+const StatsCard = ({ title, value, icon, colorScheme, isLoading }: IStatsCardProps) => {
   const colors = colorMap[colorScheme] || colorMap.blue;
 
   return (

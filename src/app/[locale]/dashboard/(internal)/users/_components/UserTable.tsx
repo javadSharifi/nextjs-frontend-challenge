@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import { User } from '../_services/useUsers';
 import GenericTable, { ColumnDef } from '../../../_components/GenericTable';
 
-interface UserTableProps {
+interface IUserTableProps {
   users: User[];
 }
 
@@ -27,7 +27,7 @@ const RoleBadge = ({ role }: { role: string }) => {
   );
 };
 
-export const UserTable = ({ users }: UserTableProps) => {
+export const UserTable = ({ users }: IUserTableProps) => {
   const t = useTranslations('Users');
 
   const columns: ColumnDef<User>[] = [

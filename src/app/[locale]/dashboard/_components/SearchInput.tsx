@@ -3,7 +3,7 @@ import { Input, Box } from '@chakra-ui/react';
 import { Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-interface SearchInputProps {
+interface ISearchInputProps {
   placeholder?: string;
   defaultValue?: string;
   onChange: (value: string) => void;
@@ -15,7 +15,7 @@ const SearchInputInner = ({
   defaultValue = '',
   onChange,
   debounceTime = 300,
-}: SearchInputProps) => {
+}: ISearchInputProps) => {
   const [value, setValue] = useState(defaultValue);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const SearchInputInner = ({
   );
 };
 
-const SearchInput = (props: SearchInputProps) => {
+const SearchInput = (props: ISearchInputProps) => {
   return <SearchInputInner key={props.defaultValue} {...props} />;
 };
 

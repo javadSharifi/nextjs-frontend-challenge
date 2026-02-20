@@ -3,7 +3,7 @@ import { Select } from '@chakra-ui/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-interface PaginationProps {
+interface IPaginationProps {
   currentPage: number;
   totalItems: number;
   pageSize: number;
@@ -19,7 +19,7 @@ const Pagination = ({
   onPageChange,
   onPageSizeChange,
   pageSizeOptions = [10, 20, 50],
-}: PaginationProps) => {
+}: IPaginationProps) => {
   const t = useTranslations('Table');
 
   const totalPages = Math.ceil(totalItems / pageSize);
@@ -63,7 +63,7 @@ const Pagination = ({
           </Select.Content>
         </Select.Root>
         <Text fontSize="xs" color="fg.muted">
-          {t('showing')} {start} {t('of')} {end} ({totalItems} total)
+          {t('showing')} {start} {t('of')} {end} ({totalItems} {t('total')})
         </Text>
       </HStack>
 
@@ -75,7 +75,7 @@ const Pagination = ({
           onClick={() => onPageChange(currentPage - 1)}
           size="sm"
         >
-          <ChevronRight size={18} />
+          <ChevronLeft size={18} />
         </IconButton>
         <Text fontWeight="bold" fontSize="sm">
           {currentPage}
@@ -87,7 +87,7 @@ const Pagination = ({
           onClick={() => onPageChange(currentPage + 1)}
           size="sm"
         >
-          <ChevronLeft size={18} />
+          <ChevronRight size={18} />
         </IconButton>
       </HStack>
     </HStack>

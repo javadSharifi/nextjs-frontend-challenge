@@ -3,7 +3,7 @@ import { Select } from '@chakra-ui/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-interface PaginationProps {
+interface IPaginationProps {
   currentPage: number;
   totalItems: number;
   pageSize: number;
@@ -25,7 +25,7 @@ export const Pagination = ({
   pageSize,
   onPageChange,
   onPageSizeChange,
-}: PaginationProps) => {
+}: IPaginationProps) => {
   const t = useTranslations('Users.pagination');
   const totalPages = Math.ceil(totalItems / pageSize);
 
