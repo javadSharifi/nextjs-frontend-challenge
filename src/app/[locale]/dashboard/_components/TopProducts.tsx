@@ -2,12 +2,12 @@ import { SimpleGrid, Box, Image, Text, VStack, Badge, Icon, Skeleton } from '@ch
 import { Star } from 'lucide-react';
 import { ProductSummary } from '../_services/dashboard-api';
 
-interface TopProductsProps {
+interface ITopProductsProps {
   products: ProductSummary[];
   isLoading: boolean;
 }
 
-const TopProducts = ({ products, isLoading }: TopProductsProps) => {
+const TopProducts = ({ products, isLoading }: ITopProductsProps) => {
   if (isLoading) {
     return (
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 6 }} gap="4">

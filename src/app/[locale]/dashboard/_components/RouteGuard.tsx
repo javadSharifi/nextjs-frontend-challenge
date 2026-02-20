@@ -1,29 +1,24 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter, usePathname } from '@/src/i18n/navigation';
 import { Center, Spinner } from '@chakra-ui/react';
 import { useAuthUser } from '../_services/useLogin';
 
-interface RouteGuardProps {
+interface IRouteGuardProps {
   children: React.ReactNode;
 }
 
 const GUEST_ONLY_ROUTES = ['/dashboard/login'];
 const DEFAULT_AUTH_REDIRECT = '/dashboard';
 
-const RouteGuard = ({ children }: RouteGuardProps) => {
+const RouteGuard = ({ children }: IRouteGuardProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const { data: user, isLoading } = useAuthUser();
-  const isMounted = useRef(false);
 
   useEffect(() => {
-    isMounted.current = true;
-  }, []);
-
-  useEffect(() => {
-    if (isLoading || !isMounted.current) return;
+    if (isLoading) return;
 
     const isGuestRoute = GUEST_ONLY_ROUTES.includes(pathname);
 

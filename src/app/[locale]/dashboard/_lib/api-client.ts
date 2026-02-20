@@ -1,17 +1,11 @@
+import { getTokenFromCookie } from './cookie-utils';
+
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 type ApiClientOptions = Omit<RequestInit, 'headers'> & {
   headers?: HeadersInit;
   params?: Record<string, string | number | boolean | undefined>;
 };
-
-function getTokenFromCookie(): string | undefined {
-  if (typeof document === 'undefined') return undefined;
-  return document.cookie
-    .split('; ')
-    .find((row) => row.trim().startsWith('token='))
-    ?.split('=')[1];
-}
 
 async function request<T>(endpoint: string, options: ApiClientOptions = {}): Promise<T> {
   const headers = new Headers(options.headers);
