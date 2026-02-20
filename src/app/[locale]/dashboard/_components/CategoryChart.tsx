@@ -14,18 +14,17 @@ import {
 } from 'recharts';
 import { CategoryDistribution } from '../_services/dashboard-api';
 
-interface CategoryChartProps {
+interface ICategoryChartProps {
   data: CategoryDistribution[];
   isLoading: boolean;
 }
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
+const GRID_COLOR = '#E2E8F0';
+const TICK_COLOR = '#4A5568';
 
-const CategoryChart = ({ data, isLoading }: CategoryChartProps) => {
+const CategoryChart = ({ data, isLoading }: ICategoryChartProps) => {
   const t = useTranslations('Dashboard.charts');
-
-  const gridColor = '#E2E8F0';
-  const tickColor = '#4A5568';
 
   if (isLoading) {
     return (
@@ -68,13 +67,13 @@ const CategoryChart = ({ data, isLoading }: CategoryChartProps) => {
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={gridColor} />
+          <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={GRID_COLOR} />
           <XAxis type="number" hide />
           <YAxis
             dataKey="name"
             type="category"
             width={150}
-            tick={{ fontSize: 12, fill: tickColor }}
+            tick={{ fontSize: 12, fill: TICK_COLOR }}
             interval={0}
             axisLine={false}
             tickLine={false}
@@ -89,7 +88,7 @@ const CategoryChart = ({ data, isLoading }: CategoryChartProps) => {
           />
           <Bar dataKey="count" radius={[0, 4, 4, 0]} barSize={20} animationDuration={1000}>
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell key={`cell-${entry.name}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Bar>
         </BarChart>

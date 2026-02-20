@@ -10,7 +10,15 @@ import { Moon, Sun } from 'lucide-react';
 export type ColorModeProviderProps = ThemeProviderProps;
 
 export function ColorModeProvider(props: ColorModeProviderProps) {
-  return <ThemeProvider attribute="class" disableTransitionOnChange {...props} />;
+  return (
+    <ThemeProvider
+      attribute="class"
+      disableTransitionOnChange
+      defaultTheme="light"
+      enableSystem={false}
+      {...props}
+    />
+  );
 }
 
 export type ColorMode = 'light' | 'dark';

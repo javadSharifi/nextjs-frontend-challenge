@@ -11,12 +11,12 @@ import { useTranslations } from 'next-intl';
 import { DashboardStats } from '../_services/dashboard-api';
 import StatsCard, { StatsCardColorScheme } from './StatsCard';
 
-interface StatsGridProps {
+interface IStatsGridProps {
   stats?: DashboardStats;
   isLoading: boolean;
 }
 
-const StatsGrid = ({ stats, isLoading }: StatsGridProps) => {
+const StatsGrid = ({ stats, isLoading }: IStatsGridProps) => {
   const t = useTranslations('Dashboard.kpi');
 
   const cards: { label: string; value?: number; icon: LucideIcon; color: StatsCardColorScheme }[] =

@@ -1,12 +1,12 @@
 import { Box, Heading, HStack, Text, Stack } from '@chakra-ui/react';
 
-interface PageHeaderProps {
+interface IPageHeaderProps {
   title: string;
   description?: string;
   actions?: React.ReactNode;
 }
 
-const PageHeader = ({ title, description, actions }: PageHeaderProps) => {
+const PageHeader = ({ title, description, actions }: IPageHeaderProps) => {
   return (
     <Box as="header" mb="6">
       <Stack

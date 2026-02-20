@@ -5,7 +5,11 @@ import { useState } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+interface IDashboardLayoutProps {
+  children: React.ReactNode;
+}
+
+const DashboardLayout = ({ children }: IDashboardLayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

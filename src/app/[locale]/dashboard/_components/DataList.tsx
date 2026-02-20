@@ -2,7 +2,7 @@ import { Stack, Box, Text, Center, Skeleton } from '@chakra-ui/react';
 import { PackageOpen } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-interface DataListProps {
+interface IDataListProps {
   isLoading: boolean;
   isEmpty: boolean;
   emptyTitle?: string;
@@ -10,14 +10,14 @@ interface DataListProps {
   children: React.ReactNode;
 }
 
-const DataList = ({ isLoading, isEmpty, emptyTitle, emptyMessage, children }: DataListProps) => {
+const DataList = ({ isLoading, isEmpty, emptyTitle, emptyMessage, children }: IDataListProps) => {
   const t = useTranslations('Table');
 
   if (isLoading) {
     return (
       <Stack gap="4" w="full">
         {[...Array(5)].map((_, i) => (
-          <Skeleton key={i} height="50px" width="full" borderRadius="md" />
+          <Skeleton key={`skeleton-${i}`} height="50px" width="full" borderRadius="md" />
         ))}
       </Stack>
     );

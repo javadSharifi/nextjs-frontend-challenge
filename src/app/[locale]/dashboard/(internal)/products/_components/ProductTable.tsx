@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import { Product } from '../_services/useProducts';
 import GenericTable, { ColumnDef } from '../../../_components/GenericTable';
 
-interface ProductTableProps {
+interface IProductTableProps {
   products: Product[];
 }
 
@@ -35,7 +35,7 @@ const StatusBadge = ({ status }: { status: Product['availabilityStatus'] }) => {
   );
 };
 
-export const ProductTable = ({ products }: ProductTableProps) => {
+export const ProductTable = ({ products }: IProductTableProps) => {
   const t = useTranslations('Products');
 
   const columns: ColumnDef<Product>[] = [

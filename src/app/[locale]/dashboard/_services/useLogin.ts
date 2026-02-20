@@ -2,17 +2,9 @@ import { useRouter } from '@/src/i18n/navigation';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { LoginInput } from '../_lib/auth';
 import { authApi } from './auth-api';
+import { hasAuthCookie, setAuthCookie } from '../_lib/cookie-utils';
 
-const TOKEN_COOKIE = 'token';
-
-function setAuthCookie(token: string) {
-  document.cookie = `${TOKEN_COOKIE}=${token}; path=/; max-age=3600; Secure; SameSite=Strict`;
-}
-
-function hasAuthCookie(): boolean {
-  if (typeof document === 'undefined') return false;
-  return document.cookie.includes(`${TOKEN_COOKIE}=`);
-}
+const AUTH_STALE_TIME = 5 * 60 * 1000;
 
 export const useLogin = () => {
   const router = useRouter();
@@ -26,7 +18,9 @@ export const useLogin = () => {
       router.replace('/dashboard');
     },
     onError: (error) => {
-      console.error('Login failed:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Login failed:', error);
+      }
     },
   });
 };
@@ -35,8 +29,8 @@ export const useAuthUser = () => {
   return useQuery({
     queryKey: ['auth-user'],
     queryFn: authApi.getMe,
-    enabled: hasAuthCookie,
+    enabled: hasAuthCookie(),
     retry: false,
-    staleTime: 5 * 60 * 1000,
+    staleTime: AUTH_STALE_TIME,
   });
 };
