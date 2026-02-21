@@ -49,9 +49,6 @@
   --ring: 240 4.9% 83.9%;
 }
 
-/* در v4 تمام کانفیگ تم اینجا انجام می‌شود.
-  ما متغیرهای CSS را به Utility Classهای تیلویند مپ می‌کنیم.
-*/
 @theme {
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -62,7 +59,7 @@
   --color-popover: hsl(var(--popover));
   --color-popover-foreground: hsl(var(--popover-foreground));
 
-  --color-primary: hsl(var(--primary));
+  --color-primary-shadcn: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
 
   --color-secondary: hsl(var(--secondary));
@@ -104,6 +101,42 @@
       height: 0;
     }
   }
+
+  /* === NexusGames Color Palette (Utility Classes) === */
+
+  --color-primary: #e63743;
+  --color-primary-hover: #ff2233;
+  --color-primary-muted: rgba(230, 55, 67, 0.15);
+  --color-primary-glow: rgba(230, 55, 67, 0.3);
+  --color-primary-glow-strong: rgba(230, 55, 67, 0.5);
+
+  --color-bg-base: #0a0a0a;
+  --color-bg-surface: #111111;
+  --color-bg-elevated: #1a0f0f;
+  --color-bg-overlay: #120808;
+
+  --color-glass-bg: rgba(20, 10, 10, 0.6);
+  --color-glass-card: rgba(30, 30, 30, 0.4);
+  --color-glass-border: rgba(255, 255, 255, 0.05);
+  --color-glass-hover-border: rgba(230, 55, 67, 0.4);
+
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+  --color-border-default: rgba(255, 255, 255, 0.1);
+  --color-border-accent: rgba(230, 55, 67, 0.4);
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
+  --color-text-muted: #666666;
+  --color-text-accent: #e63743;
+
+  --color-rating-gold: #f59e0b;
+  --color-metacritic-high: #6dc849;
+  --color-metacritic-mid: #fc9e00;
+  --color-metacritic-low: #e63743;
+
+  /* Fonts */
+  --font-display: var(--font-rajdhani), var(--font-orbitron), sans-serif;
+  --font-body: var(--font-space-grotesk), sans-serif;
 }
 
 @layer base {
@@ -113,4 +146,36 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
+}
+
+/* Utility classes that use the theme variables */
+.glass-panel {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+}
+
+.glass-card {
+  background: var(--color-glass-card);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--color-glass-border);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--color-border-accent);
+  box-shadow: 0 0 20px var(--color-primary-glow);
+  transform: translateY(-4px);
+}
+
+.glow-text {
+  text-shadow: 0 0 20px var(--color-primary-glow);
+}
+
+.neon-border {
+  box-shadow:
+    0 0 15px var(--color-primary-glow),
+    inset 0 0 15px rgba(230, 55, 67, 0.05);
 }

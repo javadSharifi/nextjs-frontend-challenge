@@ -1,55 +1,72 @@
 import { Link } from '@/src/i18n/navigation';
-import { Card, Flex, Heading, Icon, Stack, Text } from '@chakra-ui/react';
 import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { ModuleItem } from '../_config/modules';
 
-const ModuleCard = ({ name, href, icon, color, bgColor }: ModuleItem) => {
+interface ModuleIconProps {
+  icon: ModuleItem['icon'];
+  theme: ModuleItem['theme'];
+}
+
+const ModuleIcon = ({ icon: Icon, theme }: ModuleIconProps) => (
+  <div
+    className={`mb-2 flex h-12 w-12 items-center justify-center rounded-xl ${theme.bgColor} ${theme.textColor} transition-transform duration-300 group-hover:scale-110`}
+  >
+    <Icon size={24} strokeWidth={1.75} />
+  </div>
+);
+
+interface ModuleContentProps {
+  name: string;
+}
+
+const ModuleContent = ({ name }: ModuleContentProps) => {
   const t = useTranslations('Home');
 
   return (
-    <Link href={href} style={{ textDecoration: 'none' }}>
-      <Card.Root
-        height="full"
-        variant="outline"
-        bg="white"
-        _dark={{ bg: 'gray.900', borderColor: 'gray.800' }}
-        transition="all 0.3s"
-        _hover={{
-          borderColor: color,
-          transform: 'translateY(-4px)',
-          shadow: 'lg',
-        }}
+    <div className="flex flex-col gap-2">
+      <h3 className="text-base leading-snug font-semibold text-gray-900 dark:text-white">
+        {t(`modules.${name}.title`)}
+      </h3>
+      <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+        {t(`modules.${name}.description`)}
+      </p>
+    </div>
+  );
+};
+
+interface ModuleActionProps {
+  theme: ModuleItem['theme'];
+}
+
+const ModuleAction = ({ theme }: ModuleActionProps) => {
+  const t = useTranslations('Home');
+
+  return (
+    <div
+      className={`mt-4 flex items-center text-sm font-semibold ${theme.textColor} transition-all duration-300 group-hover:gap-2`}
+    >
+      <span>{t('action')}</span>
+      <ArrowRight
+        size={16}
+        className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
+      />
+    </div>
+  );
+};
+
+type ModuleCardProps = ModuleItem;
+
+const ModuleCard = ({ name, href, icon, theme }: ModuleCardProps) => {
+  return (
+    <Link href={href} className="group block h-full no-underline">
+      <div
+        className={`h-full rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900 hover:${theme.borderColor} cursor-pointer`}
       >
-        <Card.Body gap={4} p={6}>
-          <Flex
-            w={12}
-            h={12}
-            align="center"
-            justify="center"
-            rounded="lg"
-            bg={bgColor}
-            color={color}
-            mb={2}
-          >
-            <Icon as={icon} boxSize={6} />
-          </Flex>
-
-          <Stack gap={2}>
-            <Heading size="md" color="gray.900" _dark={{ color: 'white' }}>
-              {t(`modules.${name}.title`)}
-            </Heading>
-            <Text color="gray.500" _dark={{ color: 'gray.400' }} fontSize="sm" lineHeight="tall">
-              {t(`modules.${name}.description`)}
-            </Text>
-          </Stack>
-
-          <Flex mt={4} align="center" color={color} fontSize="sm" fontWeight="semibold">
-            {t('action')}
-            <Icon as={ArrowRight} ml={2} boxSize={4} />
-          </Flex>
-        </Card.Body>
-      </Card.Root>
+        <ModuleIcon icon={icon} theme={theme} />
+        <ModuleContent name={name} />
+        <ModuleAction theme={theme} />
+      </div>
     </Link>
   );
 };
