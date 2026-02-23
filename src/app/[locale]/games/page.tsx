@@ -4,6 +4,7 @@ import GamesClientView from './_components/GamesClientView';
 import HeroBanner from './_components/HeroBanner';
 import SearchBar from './_components/SearchBar';
 import FilterSidebar from './_components/FilterSidebar';
+import ThemeSwitcher from '../_components/ThemeSwitcher';
 import { getTranslations } from 'next-intl/server';
 import type { SearchParams } from 'nuqs/server';
 
@@ -61,6 +62,7 @@ const GamePage = async ({ searchParams }: IGamePageProps) => {
           <div className="flex-1">
             <SearchBar placeholder={t('search.placeholder')} />
           </div>
+          <ThemeSwitcher />
         </div>
       </header>
 

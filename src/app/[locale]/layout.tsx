@@ -51,6 +51,20 @@ export default async function LocaleLayout({
       className={`${rajdhani.variable} ${orbitron.variable} ${spaceGrotesk.variable}`}
     >
       <body suppressHydrationWarning>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (theme) {
+                    document.documentElement.setAttribute('data-theme', theme);
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
         <NuqsAdapter>
           <NextIntlClientProvider messages={messages}>
             <QueryProvider>{children}</QueryProvider>
