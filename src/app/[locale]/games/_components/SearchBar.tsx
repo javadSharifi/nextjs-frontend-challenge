@@ -15,8 +15,8 @@ const SearchBar = ({ placeholder }: ISearchBarProps) => {
   const { search, setSearch } = useGameParams();
 
   return (
-    <div className="relative w-full max-w-lg">
-      <Search size={16} className="text-text-muted absolute top-1/2 left-3 -translate-y-1/2" />
+    <label className="input input-bordered bg-base-100/50 focus-within:input-primary flex w-full max-w-lg items-center gap-2">
+      <Search size={16} className="opacity-50" />
       <input
         type="text"
         value={search || ''}
@@ -27,9 +27,9 @@ const SearchBar = ({ placeholder }: ISearchBarProps) => {
           });
         }}
         placeholder={placeholder || t('search.placeholder')}
-        className="bg-glass-card border-border-subtle placeholder-text-muted focus:border-primary w-full rounded-lg border py-2 pr-4 pl-9 text-sm text-white backdrop-blur-sm transition-colors outline-none"
+        className="grow"
       />
-    </div>
+    </label>
   );
 };
 

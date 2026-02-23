@@ -23,40 +23,25 @@ const GenreFilter = ({ genres }: IGenreFilterProps) => {
 
   return (
     <div>
-      <h3 className="text-text-muted mb-3 text-xs font-semibold tracking-widest uppercase">
+      <h3 className="mb-3 text-xs font-semibold tracking-widest uppercase opacity-50">
         {t('filters.genre')}
       </h3>
-      <div className="space-y-2">
+      <div className="space-y-1">
         {genres.map((genre) => (
           <label
             key={genre.id}
-            className="hover:bg-primary-muted flex cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 transition-colors"
+            className="hover:bg-base-200 flex cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 transition-colors"
           >
-            <div className="flex items-center gap-2">
-              <div
-                className={`flex h-4 w-4 items-center justify-center rounded border transition-all ${
-                  selectedList.includes(genre.slug)
-                    ? 'border-primary bg-primary'
-                    : 'border-border-default'
-                }`}
-                onClick={() => toggleGenre(genre.slug)}
-              >
-                {selectedList.includes(genre.slug) && (
-                  <svg viewBox="0 0 12 12" className="h-3 w-3 fill-white">
-                    <path
-                      d="M2 6l3 3 5-5"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                )}
-              </div>
-              <span className="text-text-secondary text-sm">{genre.name}</span>
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                checked={selectedList.includes(genre.slug)}
+                onChange={() => toggleGenre(genre.slug)}
+                className="checkbox checkbox-primary checkbox-xs"
+              />
+              <span className="text-sm opacity-80">{genre.name}</span>
             </div>
-            <span className="text-text-muted text-xs">{genre.games_count?.toLocaleString()}</span>
+            <span className="text-xs opacity-40">{genre.games_count?.toLocaleString()}</span>
           </label>
         ))}
       </div>

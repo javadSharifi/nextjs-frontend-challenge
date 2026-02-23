@@ -4,6 +4,7 @@ import { Rajdhani, Orbitron, Space_Grotesk } from 'next/font/google';
 import '../globals.css';
 import { QueryProvider } from '@/src/providers/QueryProvider';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
+import { ThemeProvider } from 'next-themes';
 
 const rajdhani = Rajdhani({
   subsets: ['latin'],
@@ -45,14 +46,18 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      suppressHydrationWarning
+      data-theme="nexus"
       dir={locale === 'fa' ? 'rtl' : 'ltr'}
       className={`${rajdhani.variable} ${orbitron.variable} ${spaceGrotesk.variable}`}
     >
-      <body suppressHydrationWarning>
+      <body>
         <NuqsAdapter>
           <NextIntlClientProvider messages={messages}>
-            <QueryProvider>{children}</QueryProvider>
+            <QueryProvider>
+              <ThemeProvider attribute="data-theme" defaultTheme="nexus" storageKey="theme-storage">
+                {children}
+              </ThemeProvider>
+            </QueryProvider>
           </NextIntlClientProvider>
         </NuqsAdapter>
       </body>

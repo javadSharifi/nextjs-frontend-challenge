@@ -5,14 +5,10 @@ import { useRouter, usePathname } from '@/src/i18n/navigation';
 import { Center, Spinner } from '@chakra-ui/react';
 import { useAuthUser } from '../_services/useLogin';
 
-interface IRouteGuardProps {
-  children: React.ReactNode;
-}
-
 const GUEST_ONLY_ROUTES = ['/dashboard/login'];
 const DEFAULT_AUTH_REDIRECT = '/dashboard';
 
-const RouteGuard = ({ children }: IRouteGuardProps) => {
+const RouteGuard = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const pathname = usePathname();
   const { data: user, isLoading } = useAuthUser();
@@ -31,7 +27,7 @@ const RouteGuard = ({ children }: IRouteGuardProps) => {
 
   if (isLoading) {
     return (
-      <Center h="100vh" w="100vw">
+      <Center h="100vh" w="100vw" suppressHydrationWarning>
         <Spinner size="xl" color="blue.500" />
       </Center>
     );

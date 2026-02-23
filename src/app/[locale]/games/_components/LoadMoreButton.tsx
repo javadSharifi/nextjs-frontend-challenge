@@ -24,10 +24,10 @@ const LoadMoreButton = ({ currentPage }: ILoadMoreButtonProps) => {
     <button
       onClick={handleLoadMore}
       disabled={isPending}
-      className="glass-card border-border-default font-display hover:border-border-accent hover:text-primary flex items-center gap-2 rounded-xl border px-8 py-3 font-bold text-white transition-all disabled:opacity-50"
+      className="btn btn-outline btn-primary px-8"
     >
       {isPending ? (
-        <span className="border-primary h-4 w-4 animate-spin rounded-full border-2 border-t-transparent" />
+        <span className="loading loading-spinner loading-xs" />
       ) : (
         <ChevronDown size={16} />
       )}

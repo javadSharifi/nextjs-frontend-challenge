@@ -4,6 +4,7 @@ import GamesClientView from './_components/GamesClientView';
 import HeroBanner from './_components/HeroBanner';
 import SearchBar from './_components/SearchBar';
 import FilterSidebar from './_components/FilterSidebar';
+import ThemeSwitcher from '../_components/ThemeSwitcher';
 import { getTranslations } from 'next-intl/server';
 import type { SearchParams } from 'nuqs/server';
 
@@ -50,17 +51,18 @@ const GamePage = async ({ searchParams }: IGamePageProps) => {
   const featuredGame = gamesData.results[0];
 
   return (
-    <div className="bg-bg-base min-h-screen">
-      <header className="glass-panel border-border-subtle sticky top-0 z-50 border-b">
+    <div className="bg-base-200 min-h-screen transition-colors duration-500">
+      <header className="bg-base-100 border-base-content/5 sticky top-0 z-50 border-b shadow-md">
         <div className="container mx-auto flex h-16 items-center gap-4 px-4">
           <div className="flex items-center gap-2">
-            <span className="font-display text-xl font-bold text-white">
+            <span className="text-xl font-black tracking-tighter">
               NEXUS<span className="text-primary">GAMES</span>
             </span>
           </div>
           <div className="flex-1">
             <SearchBar placeholder={t('search.placeholder')} />
           </div>
+          <ThemeSwitcher />
         </div>
       </header>
 

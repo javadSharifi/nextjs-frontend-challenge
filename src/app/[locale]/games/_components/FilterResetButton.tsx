@@ -33,7 +33,7 @@ const FilterResetButton = ({ label }: IFilterResetButtonProps) => {
   return (
     <button
       onClick={handleReset}
-      className="text-text-secondary hover:text-primary flex items-center gap-1 text-xs transition-colors"
+      className="btn btn-ghost btn-xs gap-1 opacity-60 hover:opacity-100"
     >
       <RotateCcw size={12} />
       {label}

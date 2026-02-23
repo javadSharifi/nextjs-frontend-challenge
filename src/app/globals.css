@@ -2,180 +2,104 @@
 
 @plugin 'tailwindcss-animate';
 
+@plugin 'daisyui/theme' {
+  name: 'nexus';
+  default: true;
+  prefersdark: true;
+  color-scheme: 'dark';
+
+  /* Backgrounds */
+  --color-base-100: oklch(12% 0 0); /* #0a0a0a */
+  --color-base-200: oklch(16% 0 0); /* #111111 */
+  --color-base-300: oklch(19% 0.02 24); /* #1a0f0f */
+  --color-base-content: oklch(100% 0 0); /* #ffffff */
+
+  /* Primary - #e63743 */
+  --color-primary: oklch(58% 0.22 24);
+  --color-primary-content: oklch(100% 0 0);
+
+  /* Secondary - derived from primary muted */
+  --color-secondary: oklch(45% 0.1 24);
+  --color-secondary-content: oklch(100% 0 0);
+
+  /* Accent - Gold/Rating #f59e0b */
+  --color-accent: oklch(75% 0.18 80);
+  --color-accent-content: oklch(0% 0 0);
+
+  /* Neutral */
+  --color-neutral: oklch(25% 0.02 24);
+  --color-neutral-content: oklch(100% 0 0);
+
+  /* Semantic */
+  --color-info: oklch(70% 0.15 230);
+  --color-success: oklch(78% 0.18 140); /* #6dc849 */
+  --color-warning: oklch(85% 0.15 90);
+  --color-error: oklch(60% 0.2 25);
+
+  /* Radius & Size */
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@plugin 'daisyui' {
+  themes: nexus, night, forest, black, light, cupcake, retro, valentine;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  --primary: 240 5.9% 10%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 240 10% 3.9%;
-  --radius: 0.5rem;
-}
-
-.dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;
-  --primary-foreground: 240 5.9% 10%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 240 4.9% 83.9%;
-}
-
 @theme {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-
-  --color-primary-shadcn: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
-
-  /* === NexusGames Color Palette (Utility Classes) === */
-
-  --color-primary: #e63743;
-  --color-primary-hover: #ff2233;
-  --color-primary-muted: rgba(230, 55, 67, 0.15);
-  --color-primary-glow: rgba(230, 55, 67, 0.3);
-  --color-primary-glow-strong: rgba(230, 55, 67, 0.5);
-
-  --color-bg-base: #0a0a0a;
-  --color-bg-surface: #111111;
-  --color-bg-elevated: #1a0f0f;
-  --color-bg-overlay: #120808;
-
-  --color-glass-bg: rgba(20, 10, 10, 0.6);
-  --color-glass-card: rgba(30, 30, 30, 0.4);
-  --color-glass-border: rgba(255, 255, 255, 0.05);
-  --color-glass-hover-border: rgba(230, 55, 67, 0.4);
-
-  --color-border-subtle: rgba(255, 255, 255, 0.05);
-  --color-border-default: rgba(255, 255, 255, 0.1);
-  --color-border-accent: rgba(230, 55, 67, 0.4);
-
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #a0a0a0;
-  --color-text-muted: #666666;
-  --color-text-accent: #e63743;
-
-  --color-rating-gold: #f59e0b;
-  --color-metacritic-high: #6dc849;
-  --color-metacritic-mid: #fc9e00;
-  --color-metacritic-low: #e63743;
-
   /* Fonts */
   --font-display: var(--font-rajdhani), var(--font-orbitron), sans-serif;
   --font-body: var(--font-space-grotesk), sans-serif;
+
+  /* Custom Colors from User Prompt */
+  --color-primary-hover: oklch(62% 0.25 24);
+  --color-primary-muted: oklch(58% 0.22 24 / 0.15);
+  --color-primary-glow: oklch(58% 0.22 24 / 0.3);
+
+  --color-glass-bg: oklch(15% 0.02 24 / 0.6);
+  --color-glass-card: oklch(20% 0 0 / 0.4);
+  --color-glass-border: oklch(100% 0 0 / 0.05);
+  --color-glass-hover-border: oklch(58% 0.22 24 / 0.4);
+
+  --color-text-secondary: oklch(70% 0 0);
+  --color-text-muted: oklch(50% 0 0);
+  --color-text-accent: oklch(58% 0.22 24);
+
+  /* Custom Border Radius */
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-base-200 text-base-content font-body antialiased transition-colors duration-300;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
   }
 }
 
-/* Utility classes that use the theme variables */
-.glass-panel {
-  background: var(--color-glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-glass-border);
+/* Modern Utility Classes */
+.glass {
+  @apply bg-glass-bg border-glass-border border backdrop-blur-xl;
 }
 
-.glass-card {
-  background: var(--color-glass-card);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--color-glass-border);
-  transition: all 0.3s ease;
+.glow-primary {
+  box-shadow: 0 0 30px -5px var(--color-primary-glow);
 }
 
-.glass-card:hover {
-  border-color: var(--color-border-accent);
-  box-shadow: 0 0 20px var(--color-primary-glow);
-  transform: translateY(-4px);
-}
-
-.glow-text {
-  text-shadow: 0 0 20px var(--color-primary-glow);
-}
-
-.neon-border {
-  box-shadow:
-    0 0 15px var(--color-primary-glow),
-    inset 0 0 15px rgba(230, 55, 67, 0.05);
+.card-nexus {
+  @apply bg-glass-card border-glass-border hover:border-glass-hover-border border transition-all duration-300;
 }

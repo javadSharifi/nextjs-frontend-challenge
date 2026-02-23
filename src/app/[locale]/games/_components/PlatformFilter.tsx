@@ -27,23 +27,22 @@ const PlatformFilter = ({ platforms }: IPlatformFilterProps) => {
 
   return (
     <div>
-      <h3 className="text-text-muted mb-3 text-xs font-semibold tracking-widest uppercase">
+      <h3 className="mb-3 text-xs font-semibold tracking-widest uppercase opacity-50">
         {t('filters.platform')}
       </h3>
       <div className="flex flex-wrap gap-2">
-        {filteredPlatforms.map((platform) => (
-          <button
-            key={platform.id}
-            onClick={() => togglePlatform(platform.id)}
-            className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-all ${
-              selectedList.includes(String(platform.id))
-                ? 'border-primary bg-primary-muted text-primary'
-                : 'border-border-default text-text-secondary hover:border-border-accent'
-            }`}
-          >
-            {platform.name}
-          </button>
-        ))}
+        {filteredPlatforms.map((platform) => {
+          const isSelected = selectedList.includes(String(platform.id));
+          return (
+            <button
+              key={platform.id}
+              onClick={() => togglePlatform(platform.id)}
+              className={`btn btn-sm ${isSelected ? 'btn-primary' : 'btn-outline border-base-300'}`}
+            >
+              {platform.name}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
