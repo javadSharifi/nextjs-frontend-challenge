@@ -2,7 +2,7 @@
 
 import { IGame, IGamesResponse, IGameFilters, IGenre, IPlatform } from './games.types';
 
-const BASE_URL = process.env.RAWG_BASE_URL;
+const BASE_URL = process.env.RAWG_BASE_URL || 'https://api.rawg.io/api';
 const API_KEY = process.env.RAWG_API_KEY;
 
 function buildUrl(endpoint: string, params: Record<string, string | number | undefined>): string {

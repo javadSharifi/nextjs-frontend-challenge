@@ -15,7 +15,7 @@ const FilterSidebar = async ({ genres, platforms }: IFilterSidebarProps) => {
   const t = await getTranslations('game');
 
   return (
-    <div className="card bg-base-100/30 backdrop-blur-xl border border-white/5 sticky top-20 space-y-6 p-6 shadow-2xl">
+    <div className="card bg-base-100 border border-base-content/5 sticky top-20 space-y-6 p-6 shadow-xl">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 font-bold">
           <SlidersHorizontal size={18} className="text-primary" />

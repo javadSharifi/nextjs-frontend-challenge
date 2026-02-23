@@ -30,8 +30,8 @@ const ModuleGrid = () => (
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-base-200">
-      <header className="sticky top-0 z-50 bg-base-100/80 backdrop-blur-md border-b border-white/5">
+    <div className="min-h-screen bg-base-200 transition-colors duration-500">
+      <header className="sticky top-0 z-50 bg-base-100 shadow-md border-b border-base-content/5">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <span className="text-xl font-black tracking-tighter">
             NEXUS<span className="text-primary">GAMES</span>

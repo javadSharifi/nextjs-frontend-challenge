@@ -51,8 +51,8 @@ const GamePage = async ({ searchParams }: IGamePageProps) => {
   const featuredGame = gamesData.results[0];
 
   return (
-    <div className="bg-base-200 min-h-screen">
-      <header className="sticky top-0 z-50 bg-base-100/80 backdrop-blur-md border-b border-white/5">
+    <div className="bg-base-200 min-h-screen transition-colors duration-500">
+      <header className="sticky top-0 z-50 bg-base-100 shadow-md border-b border-base-content/5">
         <div className="container mx-auto flex h-16 items-center gap-4 px-4">
           <div className="flex items-center gap-2">
             <span className="text-xl font-black tracking-tighter">

@@ -2,7 +2,7 @@
 
 @plugin 'tailwindcss-animate';
 @plugin 'daisyui' {
-  themes: nexus, night, light, cupcake;
+  themes: nexus, night, forest, black, light, cupcake, retro, valentine;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -26,22 +26,17 @@
 
 [data-theme='nexus'] {
   color-scheme: dark;
-  --primary: oklch(65% 0.25 25); /* More vivid Red */
+  --primary: oklch(65% 0.25 25); /* vivid Red */
   --primary-content: oklch(98% 0 0);
-
-  --secondary: oklch(50% 0.2 25); /* More colorful secondary */
+  --secondary: oklch(50% 0.2 25);
   --secondary-content: oklch(95% 0 0);
-
-  --accent: oklch(75% 0.3 35); /* Extremely bright Accent */
-
+  --accent: oklch(75% 0.3 35);
   --neutral: oklch(30% 0.05 25);
   --neutral-content: oklch(95% 0.02 25);
-
-  --base-100: oklch(18% 0.03 25); /* Slightly lighter, more red in base */
+  --base-100: oklch(18% 0.03 25);
   --base-200: oklch(15% 0.03 25);
   --base-300: oklch(12% 0.03 25);
   --base-content: oklch(98% 0.02 25);
-
   --info: oklch(70% 0.12 230);
   --success: oklch(70% 0.15 140);
   --warning: oklch(75% 0.15 80);
@@ -50,7 +45,7 @@
 
 @layer base {
   body {
-    @apply bg-base-200 text-base-content font-body antialiased;
+    @apply bg-base-200 text-base-content font-body antialiased transition-colors duration-300;
   }
   h1,
   h2,
@@ -64,10 +59,7 @@
 
 /* Modern Utility Classes */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  @apply bg-base-100/30 backdrop-blur-xl border border-white/5;
 }
 
 .glow-primary {

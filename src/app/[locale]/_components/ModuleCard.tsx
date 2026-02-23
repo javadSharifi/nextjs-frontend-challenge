@@ -61,7 +61,7 @@ const ModuleCard = ({ name, href, icon, theme }: ModuleCardProps) => {
   return (
     <Link href={href} className="group block h-full no-underline">
       <div
-        className={`card h-full bg-base-100 shadow-xl border border-base-300 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl cursor-pointer`}
+        className={`card h-full bg-base-100 shadow-xl border border-base-content/5 transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10 cursor-pointer`}
       >
         <div className="card-body p-6">
           <ModuleIcon icon={icon} theme={theme} />
