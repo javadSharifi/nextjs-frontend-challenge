@@ -51,7 +51,7 @@ const GameCard = ({ game, view = 'grid' }: IGameCardProps) => {
 
   return (
     <GameCardLink href={`/games/${game.slug}`}>
-      <div className="card bg-base-100/50 group cursor-pointer overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300">
+      <div className="card bg-base-100/40 group cursor-pointer overflow-hidden border border-white/5 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-1">
         <figure className="relative aspect-[16/9] overflow-hidden">
           {game.background_image ? (
             <Image

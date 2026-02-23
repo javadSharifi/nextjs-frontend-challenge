@@ -45,6 +45,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
+      data-theme="nexus"
       suppressHydrationWarning
       dir={locale === 'fa' ? 'rtl' : 'ltr'}
       className={`${rajdhani.variable} ${orbitron.variable} ${spaceGrotesk.variable}`}

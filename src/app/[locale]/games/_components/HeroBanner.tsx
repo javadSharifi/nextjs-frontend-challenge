@@ -34,16 +34,16 @@ const HeroBanner = async ({ game }: IHeroBannerProps) => {
         <div className="flex gap-3">
           <Link
             href={`/games/${game.slug}`}
-            className="btn btn-primary shadow-lg shadow-primary/20"
+            className="btn btn-primary btn-lg px-8 shadow-xl shadow-primary/20 hover:scale-105 transition-transform"
           >
-            <Play size={16} fill="currentColor" />
+            <Play size={20} fill="currentColor" />
             {t('hero.playNow')}
           </Link>
           <Link
             href={`/games/${game.slug}`}
-            className="btn btn-ghost border-white/20 bg-white/5 backdrop-blur-md hover:bg-white/10"
+            className="btn btn-ghost btn-lg border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 px-8"
           >
-            <Info size={16} />
+            <Info size={20} />
             {t('hero.details')}
           </Link>
         </div>
