@@ -7,13 +7,13 @@ const ViewToggle = () => {
   const { view, setView } = useGameParams();
 
   return (
-    <div className="border-border-subtle flex overflow-hidden rounded-lg border">
+    <div className="join border border-white/10 overflow-hidden">
       {(['grid', 'list'] as const).map((v) => (
         <button
           key={v}
           onClick={() => setView(v)}
-          className={`p-2 transition-colors ${
-            view === v ? 'bg-primary text-white' : 'text-text-muted hover:text-white'
+          className={`join-item btn btn-sm ${
+            (view || 'grid') === v ? 'btn-primary' : 'btn-ghost opacity-50'
           }`}
         >
           {v === 'grid' ? <Grid3X3 size={16} /> : <List size={16} />}

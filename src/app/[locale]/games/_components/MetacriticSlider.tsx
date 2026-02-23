@@ -32,22 +32,22 @@ const MetacriticSlider = () => {
 
   return (
     <div>
-      <h3 className="text-text-muted mb-3 text-xs font-semibold tracking-widest uppercase">
+      <h3 className="text-xs font-semibold tracking-widest uppercase opacity-50 mb-3">
         {t('filters.metacritic')}
       </h3>
       <div className="mb-3 flex items-center justify-between">
-        <span className="bg-bg-elevated rounded px-2 py-0.5 text-sm font-bold text-white tabular-nums">
+        <span className="badge badge-neutral font-bold tabular-nums">
           {min}
         </span>
-        <span className="text-text-muted text-xs">—</span>
-        <span className="bg-primary-muted text-primary rounded px-2 py-0.5 text-sm font-bold tabular-nums">
+        <span className="opacity-30 text-xs">—</span>
+        <span className="badge badge-primary font-bold tabular-nums">
           {max}
         </span>
       </div>
-      <div className="relative px-1">
-        <div className="bg-bg-elevated relative h-1.5 w-full rounded-full">
+      <div className="relative px-1 h-6 flex items-center">
+        <div className="bg-base-300 relative h-1.5 w-full rounded-full overflow-hidden">
           <div
-            className="bg-primary absolute h-full rounded-full transition-all"
+            className="bg-primary absolute h-full transition-all"
             style={{ left: `${leftPct}%`, right: `${rightPct}%` }}
           />
         </div>
@@ -57,22 +57,20 @@ const MetacriticSlider = () => {
           max={100}
           value={min}
           onChange={handleMinChange}
-          className="accent-primary [&::-webkit-slider-thumb]:border-primary [&::-moz-range-thumb]:border-primary pointer-events-none absolute inset-x-1 top-0 h-1.5 w-[calc(100%-8px)] appearance-none bg-transparent [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:bg-white [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:transition-transform [&::-webkit-slider-thumb]:hover:scale-110"
+          className="range range-primary range-xs pointer-events-none absolute inset-x-0 h-1.5 w-full appearance-none bg-transparent [&::-webkit-slider-thumb]:pointer-events-auto [&::-moz-range-thumb]:pointer-events-auto"
           style={{ zIndex: min > 90 ? 5 : 3 }}
         />
-        \{' '}
         <input
           type="range"
           min={0}
           max={100}
           value={max}
           onChange={handleMaxChange}
-          className="accent-primary [&::-webkit-slider-thumb]:border-primary [&::-moz-range-thumb]:border-primary pointer-events-none absolute inset-x-1 top-0 h-1.5 w-[calc(100%-8px)] appearance-none bg-transparent [&::-moz-range-thumb]:pointer-events-auto [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:bg-white [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:transition-transform [&::-webkit-slider-thumb]:hover:scale-110"
+          className="range range-primary range-xs pointer-events-none absolute inset-x-0 h-1.5 w-full appearance-none bg-transparent [&::-webkit-slider-thumb]:pointer-events-auto [&::-moz-range-thumb]:pointer-events-auto"
           style={{ zIndex: 4 }}
         />
       </div>
-      \{' '}
-      <div className="text-text-muted mt-3 flex justify-between text-xs">
+      <div className="mt-2 flex justify-between text-[10px] opacity-40">
         <span>0</span>
         <span>100</span>
       </div>

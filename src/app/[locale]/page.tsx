@@ -9,10 +9,10 @@ const HomeHeader = () => {
 
   return (
     <div className="flex flex-col items-center gap-4 text-center">
-      <h1 className="text-5xl leading-tight font-extrabold tracking-tight text-gray-900 dark:text-white">
+      <h1 className="text-5xl font-extrabold tracking-tight">
         {t('title')}
       </h1>
-      <p className="max-w-2xl text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+      <p className="max-w-2xl text-lg opacity-70">
         {t('subtitle')}
       </p>
     </div>
@@ -29,8 +29,8 @@ const ModuleGrid = () => (
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-50 py-20 dark:bg-black">
-      <div className="mx-auto w-full max-w-5xl px-4">
+    <main className="flex min-h-screen items-center justify-center bg-base-200 py-20">
+      <div className="container mx-auto max-w-5xl px-4">
         <div className="flex flex-col gap-12">
           <HomeHeader />
           <ModuleGrid />

@@ -23,11 +23,11 @@ const GameGrid = ({ games, totalCount, currentPage, view = 'grid', isLoading }: 
         }
       >
         {[...Array(8)].map((_, i) => (
-          <div key={i} className="glass-card animate-pulse overflow-hidden rounded-xl">
-            <div className="bg-bg-elevated aspect-[16/9]" />
-            <div className="space-y-2 p-4">
-              <div className="bg-bg-elevated h-4 w-3/4 rounded" />
-              <div className="bg-bg-elevated h-3 w-1/2 rounded" />
+          <div key={i} className="card bg-base-100/50 border border-white/5 overflow-hidden">
+            <div className="skeleton aspect-[16/9] rounded-none" />
+            <div className="card-body p-4 gap-2">
+              <div className="skeleton h-4 w-3/4" />
+              <div className="skeleton h-3 w-1/2" />
             </div>
           </div>
         ))}

@@ -24,8 +24,8 @@ const GamesClientView = ({ initialData, sidebar }: IGamesClientViewProps) => {
       <main className="min-w-0 flex-1">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="font-display text-2xl font-bold text-white">{t('list.title')}</h1>
-            <p className="text-text-secondary text-sm">
+            <h1 className="text-2xl font-bold">{t('list.title')}</h1>
+            <p className="text-sm opacity-60">
               {t('list.count', { count: gamesData?.count?.toLocaleString() || 0 })}
             </p>
           </div>

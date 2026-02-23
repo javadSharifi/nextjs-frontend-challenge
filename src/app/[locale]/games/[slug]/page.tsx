@@ -43,18 +43,18 @@ async function SimilarGamesSection({ gameId, label }: { gameId: number; label: s
   if (!similar.results.length) return null;
   return (
     <section className="mt-12">
-      <h2 className="font-display mb-6 text-2xl font-bold text-white">{label}</h2>
+      <h2 className="mb-6 text-2xl font-bold">{label}</h2>
       <SimilarGames games={similar.results} />
     </section>
   );
 }
 
 const ScreenshotsSkeleton = () => (
-  <div className="glass-card animate-pulse rounded-xl p-6">
-    <div className="bg-bg-elevated mb-4 h-6 w-40 rounded" />
+  <div className="card bg-base-100/50 p-6">
+    <div className="skeleton mb-4 h-6 w-40" />
     <div className="flex gap-3 overflow-hidden">
       {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="bg-bg-elevated h-24 w-40 shrink-0 rounded-lg" />
+        <div key={i} className="skeleton h-24 w-40 shrink-0" />
       ))}
     </div>
   </div>
@@ -62,10 +62,10 @@ const ScreenshotsSkeleton = () => (
 
 const SimilarGamesSkeleton = () => (
   <section className="mt-12">
-    <div className="bg-glass-card mb-6 h-8 w-48 animate-pulse rounded-lg" />
+    <div className="skeleton mb-6 h-8 w-48" />
     <div className="flex gap-4 overflow-hidden">
       {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="bg-glass-card h-52 w-44 shrink-0 animate-pulse rounded-xl" />
+        <div key={i} className="skeleton h-52 w-44 shrink-0" />
       ))}
     </div>
   </section>
@@ -79,18 +79,18 @@ const GameDetailPage = async ({ params }: IGameDetailPageProps) => {
   if (!game) notFound();
 
   return (
-    <div className="bg-bg-base min-h-screen">
+    <div className="bg-base-200 min-h-screen">
       <GameDetailHero game={game} />
 
       <div className="container mx-auto px-4 py-10">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="space-y-8 lg:col-span-2">
             {game.description_raw && (
-              <div className="glass-card rounded-xl p-6">
-                <h2 className="font-display mb-4 text-xl font-bold text-white">
+              <div className="card bg-base-100/50 p-6 border border-white/5 shadow-xl">
+                <h2 className="card-title mb-4 text-xl font-bold">
                   {t('detail.about')}
                 </h2>
-                <p className="text-text-secondary line-clamp-6 leading-relaxed">
+                <p className="opacity-70 line-clamp-6 leading-relaxed">
                   {game.description_raw}
                 </p>
               </div>

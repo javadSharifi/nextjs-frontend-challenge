@@ -19,32 +19,34 @@ const GameInfoCard = async ({ game }: IGameInfoCardProps) => {
   ];
 
   return (
-    <div className="glass-card space-y-4 rounded-xl p-5">
-      <h3 className="font-display font-bold text-white">{t('detail.info.title')}</h3>
+    <div className="card bg-base-100/50 border border-white/5 p-5 shadow-xl space-y-4">
+      <h3 className="card-title text-base font-bold">{t('detail.info.title')}</h3>
 
-      {infoRows.map(({ label, value, icon: Icon }) => (
-        <div
-          key={label}
-          className="border-border-subtle flex items-center justify-between border-b pb-3"
-        >
-          <div className="text-text-secondary flex items-center gap-2 text-sm">
-            <Icon size={14} className="text-primary" />
-            {label}
+      <div className="space-y-3">
+        {infoRows.map(({ label, value, icon: Icon }) => (
+          <div
+            key={label}
+            className="flex items-center justify-between border-b border-white/5 pb-2 last:border-0"
+          >
+            <div className="flex items-center gap-2 text-sm opacity-70">
+              <Icon size={14} className="text-primary" />
+              {label}
+            </div>
+            <span className="text-sm font-medium">{value}</span>
           </div>
-          <span className="text-sm font-medium text-white">{value}</span>
-        </div>
-      ))}
+        ))}
+      </div>
 
       {game.tags && game.tags.length > 0 && (
         <div>
-          <p className="text-text-muted mb-2 text-xs tracking-wider uppercase">
+          <p className="mb-2 text-xs tracking-wider uppercase opacity-40">
             {t('detail.info.tags')}
           </p>
           <div className="flex flex-wrap gap-1.5">
             {game.tags.slice(0, 10).map((tag) => (
               <span
                 key={tag.id}
-                className="bg-bg-elevated text-text-secondary rounded px-2 py-0.5 text-xs"
+                className="badge badge-sm badge-ghost opacity-70"
               >
                 {tag.name}
               </span>
@@ -58,7 +60,7 @@ const GameInfoCard = async ({ game }: IGameInfoCardProps) => {
           href={game.website}
           target="_blank"
           rel="noopener noreferrer"
-          className="border-border-accent text-primary hover:bg-primary-muted flex w-full items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm transition-colors"
+          className="btn btn-outline btn-primary btn-sm w-full mt-2"
         >
           <Globe size={14} />
           {t('detail.info.website')}

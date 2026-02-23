@@ -20,28 +20,28 @@ const HeroBanner = async ({ game }: IHeroBannerProps) => {
       <div className="from-bg-base absolute inset-0 bg-gradient-to-t via-transparent to-transparent" />
 
       <div className="absolute inset-0 flex flex-col justify-end p-8 md:justify-center">
-        <div className="bg-primary mb-3 inline-flex max-w-fit items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold text-white uppercase">
+        <div className="badge badge-primary mb-3 font-bold uppercase">
           {t('hero.newRelease')}
         </div>
-        <h1 className="font-display glow-text mb-2 max-w-lg text-3xl font-bold text-white md:text-5xl">
+        <h1 className="mb-2 max-w-lg text-3xl font-bold text-white md:text-5xl drop-shadow-lg">
           {game.name}
         </h1>
         {game.description_raw && (
-          <p className="text-text-secondary mb-6 line-clamp-2 max-w-md text-sm">
+          <p className="mb-6 line-clamp-2 max-w-md text-sm text-white/70">
             {game.description_raw}
           </p>
         )}
         <div className="flex gap-3">
           <Link
             href={`/games/${game.slug}`}
-            className="bg-primary hover:bg-primary-hover neon-border flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-bold text-white transition-colors"
+            className="btn btn-primary shadow-lg shadow-primary/20"
           >
-            <Play size={16} fill="white" />
+            <Play size={16} fill="currentColor" />
             {t('hero.playNow')}
           </Link>
           <Link
             href={`/games/${game.slug}`}
-            className="glass-card hover:border-border-accent flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-bold text-white transition-all"
+            className="btn btn-ghost border-white/20 bg-white/5 backdrop-blur-md hover:bg-white/10"
           >
             <Info size={16} />
             {t('hero.details')}
