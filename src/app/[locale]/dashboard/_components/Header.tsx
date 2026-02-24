@@ -25,6 +25,7 @@ const Header = ({ onSidebarOpen }: IHeaderProps) => {
       borderColor="border.muted"
       shadow="sm"
       zIndex="5"
+      color="fg.default"
     >
       <HStack gap="4">
         <Button
@@ -38,14 +39,14 @@ const Header = ({ onSidebarOpen }: IHeaderProps) => {
           <Menu size={20} />
         </Button>
 
-        <Text fontWeight="800" fontSize="xl" letterSpacing="tight">
+        <Text fontWeight="800" fontSize="xl" letterSpacing="tight" color="fg.default">
           {t('title')}
         </Text>
       </HStack>
 
       <HStack gap="3">
         <Box pos="relative">
-          <Button variant="ghost" size="sm" rounded="full" aria-label="Notifications" h="10" w="10">
+          <Button variant="ghost" size="sm" rounded="full" aria-label="Notifications" h="10" w="10" color="fg.default">
             <Bell size={20} />
           </Button>
           <Box pos="absolute" top="2" right="2" bg="red.500" w="2" h="2" borderRadius="full" border="2px solid" borderColor="bg.panel" />

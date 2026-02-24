@@ -41,12 +41,16 @@ const SearchInputInner = ({
       </Box>
       <Input
         bg="bg.panel"
-        borderColor="border.default"
+        borderColor="border.muted"
+        borderWidth="2px"
+        color="fg.default"
         placeholder={placeholder}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         pl="10"
-        _focus={{ borderColor: 'blue.500', shadow: 'outline' }}
+        h="11"
+        borderRadius="xl"
+        _focus={{ borderColor: 'blue.500', shadow: 'sm' }}
       />
     </Box>
   );

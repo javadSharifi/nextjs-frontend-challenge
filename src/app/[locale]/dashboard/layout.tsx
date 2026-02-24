@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { ChakraProviderWrapper } from '@/src/providers/ChakraProvider';
+import { Box } from '@chakra-ui/react';
 
 export const metadata: Metadata = {
   title: {
@@ -15,9 +16,15 @@ export const metadata: Metadata = {
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <ChakraProviderWrapper>
-      <div suppressHydrationWarning className="chakra dashboard-root">
+      <Box
+        suppressHydrationWarning
+        className="chakra dashboard-root"
+        minH="100vh"
+        bg="bg.canvas"
+        color="fg.default"
+      >
         {children}
-      </div>
+      </Box>
     </ChakraProviderWrapper>
   );
 }

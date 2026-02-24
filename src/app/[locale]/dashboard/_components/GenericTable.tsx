@@ -32,7 +32,7 @@ const GenericTable = <T extends { id: string | number }>({
       bg="bg.panel"
       shadow="sm"
     >
-      <Table.Root size="md" variant="line" interactive>
+      <Table.Root size="md" variant="line" interactive color="fg.default">
         <Table.Header bg={{ base: 'gray.100', _dark: 'whiteAlpha.100' }}>
           <Table.Row borderBottom="2px solid" borderColor="border.muted">
             {columns.map((col) => (
@@ -73,16 +73,16 @@ const GenericTable = <T extends { id: string | number }>({
                   transition="background 0.2s"
                 >
                   {columns.map((col) => (
-                    <Table.Cell key={col.header} py="4" fontWeight="medium">{col.render(item)}</Table.Cell>
+                    <Table.Cell key={col.header} py="4" fontWeight="medium" color="fg.default">{col.render(item)}</Table.Cell>
                   ))}
 
                   {showActions && (
                     <Table.Cell py="4">
                       <HStack gap="2">
-                        <IconButton variant="subtle" size="sm" colorPalette="blue" borderRadius="lg">
+                        <IconButton variant="subtle" size="sm" colorPalette="blue" borderRadius="lg" color="blue.600">
                           <Edit2 size={16} />
                         </IconButton>
-                        <IconButton variant="subtle" size="sm" colorPalette="red" borderRadius="lg">
+                        <IconButton variant="subtle" size="sm" colorPalette="red" borderRadius="lg" color="red.600">
                           <Trash2 size={16} />
                         </IconButton>
                       </HStack>

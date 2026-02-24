@@ -46,7 +46,8 @@ const Sidebar = ({ onItemClick }: ISidebar) => {
         onClick={onItemClick}
         border="1px solid"
         borderColor={isActive ? 'blue.400' : 'transparent'}
-        _hover={{ bg: isActive ? 'blue.600' : 'gray.100' }}
+        color={isActive ? 'white' : 'fg.muted'}
+        _hover={{ bg: isActive ? 'blue.600' : 'gray.100', color: isActive ? 'white' : 'fg.default' }}
       >
         <Link href={item.href}>
           <Icon as={item.icon} boxSize="5" />
@@ -65,6 +66,7 @@ const Sidebar = ({ onItemClick }: ISidebar) => {
       bg="bg.panel"
       borderLeftWidth="2px"
       borderColor="border.muted"
+      color="fg.default"
     >
       <Stack gap="10">
         <Flex align="center" gap="3" px="2">
@@ -94,7 +96,7 @@ const Sidebar = ({ onItemClick }: ISidebar) => {
               <Avatar.Fallback name={tDashboard('profile_name')} />
             </Avatar.Root>
             <Box>
-              <Text fontSize="sm" fontWeight="bold">
+              <Text fontSize="sm" fontWeight="bold" color="fg.default">
                 {tDashboard('profile_name')}
               </Text>
               <Text fontSize="xs" color="fg.muted">
@@ -102,7 +104,7 @@ const Sidebar = ({ onItemClick }: ISidebar) => {
               </Text>
             </Box>
           </Flex>
-          <Button variant="ghost" size="sm" colorPalette="red" borderRadius="lg">
+          <Button variant="ghost" size="sm" colorPalette="red" borderRadius="lg" color="red.500">
             <Icon as={LogOut} />
           </Button>
         </Flex>

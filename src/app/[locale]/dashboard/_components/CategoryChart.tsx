@@ -37,7 +37,7 @@ const CategoryChart = ({ data, isLoading }: ICategoryChartProps) => {
         p="6"
         shadow="md"
       >
-        <Heading size="md" mb="6">
+        <Heading size="md" mb="6" color="fg.default">
           {t('categories_distribution')}
         </Heading>
         <Skeleton height="300px" width="100%" borderRadius="md" />
@@ -54,8 +54,9 @@ const CategoryChart = ({ data, isLoading }: ICategoryChartProps) => {
       borderColor="border.muted"
       h="400px"
       shadow="md"
+      color="fg.default"
     >
-      <Heading size="md" mb="6">
+      <Heading size="md" mb="6" color="fg.default">
         {t('categories_distribution')}
       </Heading>
       <ResponsiveContainer width="100%" height="85%">
@@ -83,9 +84,12 @@ const CategoryChart = ({ data, isLoading }: ICategoryChartProps) => {
           <Tooltip
             cursor={{ fill: 'transparent' }}
             contentStyle={{
-              borderRadius: '8px',
-              border: 'none',
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+              borderRadius: '12px',
+              border: '2px solid var(--chakra-colors-border-muted)',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+              backgroundColor: 'var(--chakra-colors-bg-panel)',
+              color: 'var(--chakra-colors-fg-default)',
+              fontWeight: 'bold',
             }}
           />
           <Bar dataKey="count" radius={[0, 4, 4, 0]} barSize={20} animationDuration={1000}>
