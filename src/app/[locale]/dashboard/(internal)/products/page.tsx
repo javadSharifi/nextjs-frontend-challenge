@@ -8,7 +8,8 @@ import { useProductFilters } from './_hooks/useProductFilters';
 import { Package, Layers, type LucideIcon } from 'lucide-react';
 import PageHeader from '../../_components/PageHeader';
 import SearchInput from '../../_components/SearchInput';
-import StatsCard, { type StatsCardColorScheme } from '../../_components/StatsCard';
+import StatsCard from '../../_components/StatsCard';
+import { StatsCardColorScheme } from '../../_components/statsCardColorMap';
 import DataList from '../../_components/DataList';
 import Pagination from '../../_components/Pagination';
 

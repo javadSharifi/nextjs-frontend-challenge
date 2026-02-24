@@ -1,9 +1,30 @@
-import { Provider } from '@/src/components/ui/provider';
+import { Metadata } from 'next';
+import { ChakraProviderWrapper } from '@/src/providers/ChakraProvider';
+import { Box } from '@chakra-ui/react';
 
-export default function DashboardRootLayout({ children }: { children: React.ReactNode }) {
+export const metadata: Metadata = {
+  title: {
+    default: 'Dashboard',
+    template: 'Dashboard | %s',
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Provider>
-      <div suppressHydrationWarning>{children}</div>
-    </Provider>
+    <ChakraProviderWrapper>
+      <Box
+        suppressHydrationWarning
+        className="chakra dashboard-root"
+        minH="100vh"
+        bg="bg.canvas"
+        color="fg"
+      >
+        {children}
+      </Box>
+    </ChakraProviderWrapper>
   );
 }

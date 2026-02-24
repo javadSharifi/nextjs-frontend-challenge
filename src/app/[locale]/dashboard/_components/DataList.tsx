@@ -37,7 +37,7 @@ const DataList = ({ isLoading, isEmpty, emptyTitle, emptyMessage, children }: ID
       >
         <PackageOpen size={48} strokeWidth={1.5} />
         <Box textAlign="center">
-          <Text fontWeight="medium" fontSize="lg" color="fg.default">
+          <Text fontWeight="medium" fontSize="lg" color="fg">
             {emptyTitle || t('empty')}
           </Text>
           {emptyMessage && <Text fontSize="sm">{emptyMessage}</Text>}

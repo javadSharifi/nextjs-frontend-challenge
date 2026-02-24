@@ -9,7 +9,8 @@ import PageHeader from '../../_components/PageHeader';
 import SearchInput from '../../_components/SearchInput';
 import DataList from '../../_components/DataList';
 import Pagination from '../../_components/Pagination';
-import StatsCard, { type StatsCardColorScheme } from '../../_components/StatsCard';
+import StatsCard from '../../_components/StatsCard';
+import { StatsCardColorScheme } from '../../_components/statsCardColorMap';
 import { Users as UsersIcon, ShieldCheck, UserCheck, type LucideIcon } from 'lucide-react';
 
 interface UserStat {

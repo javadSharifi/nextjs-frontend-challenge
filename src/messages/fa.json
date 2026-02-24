@@ -1,6 +1,8 @@
 {
   "Home": {
     "title": "چالش فرانت‌اند گیت‌هاب",
+    "test": "تست",
+    "compony": "بهمن سبز",
     "subtitle": "یک تسک را انتخاب کنید تا تفاوت بین مدل‌ها را بررسی کنید.",
     "modules": {
       "dashboard": {
@@ -19,7 +21,7 @@
     "action": "بررسی مدل"
   },
   "Login": {
-    "title": "به خاطر بازگشت",
+    "title": "ورود",
     "subtitle": "وارد شوید با استفاده از اطلاعات ورود خود به داشبورد",
     "username": "نام کاربری",
     "password": "رمز عبور",
@@ -42,7 +44,7 @@
     "security": "امنیت",
     "admin": "پنل مدیریت",
     "logout": "خروج",
-    "welcome_back": "خوش آمدید بازگشت به داشبورد",
+    "welcome_back": "خوش آمدید به داشبورد",
     "menu_main": "اصلی",
     "menu_settings": "تنظیمات سیستم",
     "profile_name": "کاربر مدیر",
@@ -123,6 +125,10 @@
       "Low Stock": "کمبود موجودی",
       "Out of Stock": "ناموجود"
     }
+  },
+  "ThemeSwitcher": {
+    "themes": "تم‌ها",
+    "personalization": "شخصی‌سازی"
   },
   "NotFound": {},
   "game": {

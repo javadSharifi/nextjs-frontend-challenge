@@ -12,9 +12,11 @@ export default function DashboardHome() {
   const { stats, recentUsers, topProducts, categoryDistribution, isLoading } = useDashboardData();
 
   return (
-    <Container maxW="full" py="6" px="8">
+    <Container maxW="full" bg="bg.canvas" color="fg" py="6" px="8">
       <VStack align="stretch" gap="8">
-        <Heading size="lg">{t('welcome_back')}</Heading>
+        <Heading color="fg" size="lg">
+          {t('welcome_back')}
+        </Heading>
 
         <StatsGrid stats={stats} isLoading={isLoading} />
 
@@ -30,7 +32,7 @@ export default function DashboardHome() {
             h="400px"
             overflowY="auto"
           >
-            <Heading size="md" mb="4">
+            <Heading size="md" mb="4" color="fg">
               {t('recent_users')}
             </Heading>
             <RecentUsers users={recentUsers} isLoading={isLoading} />
@@ -38,7 +40,7 @@ export default function DashboardHome() {
         </SimpleGrid>
 
         <Box bg="bg.panel" p="6" borderRadius="2xl" border="1px solid" borderColor="border.subtle">
-          <Heading size="md" mb="4">
+          <Heading size="md" mb="4" color="fg">
             {t('top_products')}
           </Heading>
           <TopProducts products={topProducts} isLoading={isLoading} />

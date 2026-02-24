@@ -22,7 +22,7 @@ const RecentUsers = ({ users, isLoading }: IRecentUsersProps) => {
             <Avatar.Fallback name={user.firstName} />
           </Avatar.Root>
           <Box>
-            <Text fontWeight="medium" fontSize="sm" color="fg.default">
+            <Text fontWeight="medium" fontSize="sm" color="fg">
               {`${user.firstName} ${user.lastName}`}
             </Text>
             <Text fontSize="xs" color="fg.muted">

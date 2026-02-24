@@ -8,25 +8,25 @@ interface IPageHeaderProps {
 
 const PageHeader = ({ title, description, actions }: IPageHeaderProps) => {
   return (
-    <Box as="header" mb="6">
+    <Box as="header" mb="10">
       <Stack
         direction={{ base: 'column', sm: 'row' }}
         justify="space-between"
         align={{ base: 'flex-start', sm: 'center' }}
-        gap="4"
+        gap="6"
       >
         <Box>
-          <Heading size="2xl" mb="1" color="fg.default">
+          <Heading size="3xl" mb="2" color="fg" fontWeight="900" letterSpacing="tight">
             {title}
           </Heading>
           {description && (
-            <Text color="fg.muted" fontSize="sm">
+            <Text color="fg.muted" fontSize="md" fontWeight="medium">
               {description}
             </Text>
           )}
         </Box>
         {actions && (
-          <HStack gap="2" flexWrap="wrap">
+          <HStack gap="3" flexWrap="wrap">
             {actions}
           </HStack>
         )}

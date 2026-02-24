@@ -1,11 +1,9 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Rajdhani, Orbitron, Space_Grotesk } from 'next/font/google';
-import '../globals.css';
 import { QueryProvider } from '@/src/providers/QueryProvider';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
-import { ThemeProvider } from 'next-themes';
-
+import '../globals.css';
 const rajdhani = Rajdhani({
   subsets: ['latin'],
   variable: '--font-rajdhani',
@@ -28,8 +26,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata = {
-  title: { default: 'NexusGames', template: '%s | NexusGames' },
-  description: 'پلتفرم بازی‌های ویدیویی',
+  title: { default: 'Frontend Challenge', template: '%s | Frontend Challenge' },
+  description: 'Frontend Challenge Application',
 };
 
 export default async function LocaleLayout({
@@ -40,24 +38,19 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-
   const messages = await getMessages();
 
   return (
     <html
       lang={locale}
-      data-theme="nexus"
       dir={locale === 'fa' ? 'rtl' : 'ltr'}
       className={`${rajdhani.variable} ${orbitron.variable} ${spaceGrotesk.variable}`}
+      suppressHydrationWarning
     >
-      <body>
+      <body suppressHydrationWarning>
         <NuqsAdapter>
-          <NextIntlClientProvider messages={messages}>
-            <QueryProvider>
-              <ThemeProvider attribute="data-theme" defaultTheme="nexus" storageKey="theme-storage">
-                {children}
-              </ThemeProvider>
-            </QueryProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <QueryProvider>{children}</QueryProvider>
           </NextIntlClientProvider>
         </NuqsAdapter>
       </body>

@@ -1,7 +1,6 @@
 import { Box, Flex, Text, Icon, Skeleton } from '@chakra-ui/react';
 import { LucideIcon } from 'lucide-react';
-
-export type StatsCardColorScheme = 'purple' | 'green' | 'blue' | 'orange' | 'red';
+import { StatsCardColorScheme, statsCardColorMap } from './statsCardColorMap';
 
 interface IStatsCardProps {
   title: string;
@@ -11,54 +10,28 @@ interface IStatsCardProps {
   isLoading?: boolean;
 }
 
-const colorMap: Record<StatsCardColorScheme, { bg: string; color: string; valueColor: string }> = {
-  purple: {
-    bg: 'purple.100',
-    color: 'purple.600',
-    valueColor: 'purple.600',
-  },
-  green: {
-    bg: 'green.100',
-    color: 'green.600',
-    valueColor: 'green.600',
-  },
-  blue: {
-    bg: 'blue.100',
-    color: 'blue.600',
-    valueColor: 'gray.800',
-  },
-  orange: {
-    bg: 'orange.100',
-    color: 'orange.600',
-    valueColor: 'orange.600',
-  },
-  red: {
-    bg: 'red.100',
-    color: 'red.600',
-    valueColor: 'red.600',
-  },
-};
-
 const StatsCard = ({ title, value, icon, colorScheme, isLoading }: IStatsCardProps) => {
-  const colors = colorMap[colorScheme] || colorMap.blue;
+  const colors = statsCardColorMap[colorScheme] || statsCardColorMap.blue;
 
   return (
     <Box
       bg="bg.panel"
       p="6"
       borderRadius="2xl"
-      shadow="sm"
-      border="1px solid"
-      borderColor="border.subtle"
+      shadow="md"
+      border="2px solid"
+      borderColor={colors.borderColor}
       flex="1"
+      transition="transform 0.2s, box-shadow 0.2s"
+      _hover={{ transform: 'translateY(-2px)', shadow: 'lg' }}
     >
-      <Flex justify="space-between" align="flex-start">
+      <Flex justify="space-between" align="center">
         <Box>
-          <Text fontSize="sm" color="fg.muted" fontWeight="medium" mb="2">
+          <Text fontSize="sm" color="fg.muted" fontWeight="bold" mb="1" letterSpacing="tight">
             {title}
           </Text>
           <Skeleton loading={isLoading}>
-            <Text fontSize="3xl" fontWeight="bold" color={colors.valueColor}>
+            <Text fontSize="3xl" fontWeight="800" color={colors.valueColor}>
               {value}
             </Text>
           </Skeleton>
@@ -68,10 +41,12 @@ const StatsCard = ({ title, value, icon, colorScheme, isLoading }: IStatsCardPro
           justify="center"
           bg={colors.bg}
           color={colors.color}
-          p="3"
-          borderRadius="xl"
+          p="4"
+          borderRadius="2xl"
+          border="1px solid"
+          borderColor={colors.borderColor}
         >
-          <Icon as={icon} boxSize="6" />
+          <Icon as={icon} boxSize="7" />
         </Flex>
       </Flex>
     </Box>
