@@ -29,13 +29,14 @@ const TopProducts = ({ products, isLoading }: ITopProductsProps) => {
           key={product.id}
           bg="bg.panel"
           p="3"
-          borderRadius="lg"
-          border="1px solid"
-          borderColor="border.subtle"
-          _hover={{ shadow: 'md', borderColor: 'blue.500/50' }}
+          borderRadius="xl"
+          border="2px solid"
+          borderColor="border.muted"
+          _hover={{ shadow: 'lg', borderColor: 'blue.500/50', transform: 'translateY(-2px)' }}
           transition="all 0.2s"
           position="relative"
           overflow="hidden"
+          shadow="sm"
         >
           <VStack align="stretch" gap="3">
             <Box

@@ -24,16 +24,23 @@ const GenericTable = <T extends { id: string | number }>({
   const t = useTranslations('Common');
 
   return (
-    <Box overflowX="auto" borderRadius="xl" border="1px solid" borderColor="border.subtle">
+    <Box
+      overflowX="auto"
+      borderRadius="2xl"
+      border="2px solid"
+      borderColor="border.muted"
+      bg="bg.panel"
+      shadow="sm"
+    >
       <Table.Root size="md" variant="line" interactive>
-        <Table.Header bg={{ base: 'gray.50', _dark: 'whiteAlpha.50' }}>
-          <Table.Row>
+        <Table.Header bg={{ base: 'gray.100', _dark: 'whiteAlpha.100' }}>
+          <Table.Row borderBottom="2px solid" borderColor="border.muted">
             {columns.map((col) => (
-              <Table.ColumnHeader key={col.header} color="fg.muted">
+              <Table.ColumnHeader key={col.header} color="fg.default" fontWeight="800" py="4">
                 {col.header}
               </Table.ColumnHeader>
             ))}
-            {showActions && <Table.ColumnHeader w="100px">{t('actions')}</Table.ColumnHeader>}
+            {showActions && <Table.ColumnHeader w="120px" color="fg.default" fontWeight="800" py="4">{t('actions')}</Table.ColumnHeader>}
           </Table.Row>
         </Table.Header>
 
@@ -46,12 +53,12 @@ const GenericTable = <T extends { id: string | number }>({
                   borderColor="border.subtle"
                 >
                   {columns.map((col) => (
-                    <Table.Cell key={col.header}>
+                    <Table.Cell key={col.header} py="4">
                       <Skeleton height="20px" width="80%" />
                     </Table.Cell>
                   ))}
                   {showActions && (
-                    <Table.Cell>
+                    <Table.Cell py="4">
                       <Skeleton height="20px" width="100%" />
                     </Table.Cell>
                   )}
@@ -60,21 +67,22 @@ const GenericTable = <T extends { id: string | number }>({
             : data.map((item) => (
                 <Table.Row
                   key={item.id}
-                  _hover={{ bg: { base: 'gray.50/50', _dark: 'whiteAlpha.50' } }}
+                  _hover={{ bg: { base: 'blue.50/40', _dark: 'whiteAlpha.50' } }}
                   borderBottom="1px solid"
                   borderColor="border.subtle"
+                  transition="background 0.2s"
                 >
                   {columns.map((col) => (
-                    <Table.Cell key={col.header}>{col.render(item)}</Table.Cell>
+                    <Table.Cell key={col.header} py="4" fontWeight="medium">{col.render(item)}</Table.Cell>
                   ))}
 
                   {showActions && (
-                    <Table.Cell>
+                    <Table.Cell py="4">
                       <HStack gap="2">
-                        <IconButton variant="ghost" size="sm" colorPalette="blue">
+                        <IconButton variant="subtle" size="sm" colorPalette="blue" borderRadius="lg">
                           <Edit2 size={16} />
                         </IconButton>
-                        <IconButton variant="ghost" size="sm" colorPalette="red">
+                        <IconButton variant="subtle" size="sm" colorPalette="red" borderRadius="lg">
                           <Trash2 size={16} />
                         </IconButton>
                       </HStack>

@@ -32,9 +32,10 @@ const CategoryChart = ({ data, isLoading }: ICategoryChartProps) => {
         h="400px"
         bg="bg.panel"
         borderRadius="2xl"
-        border="1px solid"
-        borderColor="border.subtle"
+        border="2px solid"
+        borderColor="border.muted"
         p="6"
+        shadow="md"
       >
         <Heading size="md" mb="6">
           {t('categories_distribution')}
@@ -49,9 +50,10 @@ const CategoryChart = ({ data, isLoading }: ICategoryChartProps) => {
       bg="bg.panel"
       p="6"
       borderRadius="2xl"
-      border="1px solid"
-      borderColor="border.subtle"
+      border="2px solid"
+      borderColor="border.muted"
       h="400px"
+      shadow="md"
     >
       <Heading size="md" mb="6">
         {t('categories_distribution')}

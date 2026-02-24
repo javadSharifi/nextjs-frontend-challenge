@@ -33,7 +33,9 @@ export default function LoginPage() {
         maxW="sm"
         w="full"
         variant="elevated"
-        shadow="xl"
+        shadow="2xl"
+        border="2px solid"
+        borderColor="border.muted"
         _dark={{ bg: 'gray.900', borderColor: 'gray.800' }}
       >
         <Card.Body gap={8} p={8}>

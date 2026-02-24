@@ -35,13 +35,18 @@ const Sidebar = ({ onItemClick }: ISidebar) => {
       <Button
         key={item.href}
         asChild
-        variant={isActive ? 'subtle' : 'ghost'}
+        variant={isActive ? 'solid' : 'ghost'}
         justifyContent="flex-start"
         colorPalette={isActive ? 'blue' : 'gray'}
         gap="3"
         w="full"
-        _hover={{ bg: isActive ? 'blue.50' : 'gray.50' }}
+        px="4"
+        h="11"
+        borderRadius="xl"
         onClick={onItemClick}
+        border="1px solid"
+        borderColor={isActive ? 'blue.400' : 'transparent'}
+        _hover={{ bg: isActive ? 'blue.600' : 'gray.100' }}
       >
         <Link href={item.href}>
           <Icon as={item.icon} boxSize="5" />
@@ -55,36 +60,36 @@ const Sidebar = ({ onItemClick }: ISidebar) => {
     <Stack
       h="full"
       px="4"
-      py="6"
+      py="8"
       justify="space-between"
       bg="bg.panel"
-      borderLeftWidth="1px"
-      borderColor="border.subtle"
+      borderLeftWidth="2px"
+      borderColor="border.muted"
     >
-      <Stack gap="8">
+      <Stack gap="10">
         <Flex align="center" gap="3" px="2">
-          <Box bg="blue.600" p="2" borderRadius="lg" color="white">
+          <Box bg="blue.600" p="2.5" borderRadius="xl" color="white" shadow="0 4px 12px rgba(37, 99, 235, 0.3)">
             <Icon as={LayoutDashboard} boxSize="6" />
           </Box>
-          <Text fontSize="xl" fontWeight="bold" color="fg.default">
+          <Text fontSize="2xl" fontWeight="800" color="fg.default" letterSpacing="tight">
             {tDashboard('admin')}
           </Text>
         </Flex>
 
-        <Stack gap="6">
+        <Stack gap="8">
           <Box>
-            <Text fontSize="xs" fontWeight="bold" color="fg.muted" mb="2" px="2">
+            <Text fontSize="xs" fontWeight="800" color="fg.muted" mb="4" px="4" textTransform="uppercase" letterSpacing="widest">
               {tDashboard('menu_main')}
             </Text>
-            <Stack gap="1">{MAIN_ITEMS.map(renderNavItem)}</Stack>
+            <Stack gap="2">{MAIN_ITEMS.map(renderNavItem)}</Stack>
           </Box>
         </Stack>
       </Stack>
 
-      <Box borderTopWidth="1px" borderColor="border.subtle" pt="4">
-        <Flex align="center" justify="space-between" mb="4">
+      <Box borderTopWidth="2px" borderColor="border.muted" pt="6">
+        <Flex align="center" justify="space-between" mb="4" px="2">
           <Flex gap="3" align="center">
-            <Avatar.Root size="sm">
+            <Avatar.Root size="sm" border="2px solid" borderColor="blue.500">
               <Avatar.Image src="https://dummyjson.com/icon/emilys/128" />
               <Avatar.Fallback name={tDashboard('profile_name')} />
             </Avatar.Root>
@@ -97,7 +102,7 @@ const Sidebar = ({ onItemClick }: ISidebar) => {
               </Text>
             </Box>
           </Flex>
-          <Button variant="ghost" size="sm" colorPalette="red">
+          <Button variant="ghost" size="sm" colorPalette="red" borderRadius="lg">
             <Icon as={LogOut} />
           </Button>
         </Flex>
