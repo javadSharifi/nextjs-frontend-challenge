@@ -26,8 +26,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata = {
-  title: { default: 'NexusGames', template: '%s | NexusGames' },
-  description: 'پلتفرم بازی‌های ویدیویی',
+  title: { default: 'Frontend Challenge', template: '%s | Frontend Challenge' },
+  description: 'Frontend Challenge Application',
 };
 
 export default async function LocaleLayout({

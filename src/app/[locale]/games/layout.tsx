@@ -3,11 +3,11 @@ import '../../globals.css';
 import { GamesProvider } from '@/src/providers/GamesProvider';
 
 export const metadata: Metadata = {
-  title: 'Games Explorer',
-  description: 'Explore the latest and greatest games.',
+  title: 'NEXUSGAMES',
+  description: 'Explore the latest and greatest games on NEXUSGAMES.',
   openGraph: {
-    title: 'Games Explorer',
-    description: 'Explore the latest and greatest games.',
+    title: 'NEXUSGAMES',
+    description: 'Explore the latest and greatest games on NEXUSGAMES.',
     type: 'website',
   },
 };

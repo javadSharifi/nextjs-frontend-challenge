@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <ChakraProviderWrapper>
-      <div suppressHydrationWarning className="dashboard-root">
+      <div suppressHydrationWarning className="chakra dashboard-root">
         {children}
       </div>
     </ChakraProviderWrapper>
