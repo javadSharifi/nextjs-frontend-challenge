@@ -2,24 +2,17 @@
 
 import type { IconButtonProps, SpanProps } from '@chakra-ui/react';
 import { ClientOnly, IconButton, Skeleton, Span } from '@chakra-ui/react';
-import { ThemeProvider, useTheme } from 'next-themes';
-import type { ThemeProviderProps } from 'next-themes';
+import { useTheme } from 'next-themes';
 import * as React from 'react';
+import { THEMES } from '@/src/app/[locale]/_config/themes';
 import { Moon, Sun } from 'lucide-react';
 
-export type ColorModeProviderProps = ThemeProviderProps;
+export interface ColorModeProviderProps {
+  children: React.ReactNode;
+}
 
 export function ColorModeProvider(props: ColorModeProviderProps) {
-  return (
-    <ThemeProvider
-      attribute="class"
-      disableTransitionOnChange
-      defaultTheme="light"
-      enableSystem={false}
-      suppressHydrationWarning
-      {...props}
-    />
-  );
+  return <>{props.children}</>;
 }
 
 export type ColorMode = 'light' | 'dark';
@@ -31,11 +24,16 @@ export interface UseColorModeReturn {
 }
 
 export function useColorMode(): UseColorModeReturn {
-  const { resolvedTheme, setTheme, forcedTheme } = useTheme();
-  const colorMode = forcedTheme || resolvedTheme;
+  const { theme, resolvedTheme, setTheme } = useTheme();
+
+  const currentTheme = theme || resolvedTheme;
+  const themeConfig = THEMES.find((t) => t.id === currentTheme);
+  const colorMode = themeConfig ? themeConfig.type : resolvedTheme === 'dark' ? 'dark' : 'light';
+
   const toggleColorMode = () => {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+    setTheme(colorMode === 'dark' ? 'light' : 'nexus');
   };
+
   return {
     colorMode: colorMode as ColorMode,
     setColorMode: setTheme,
