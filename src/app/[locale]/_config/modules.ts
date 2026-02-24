@@ -50,7 +50,7 @@ export const MODULES: ModuleItem[] = [
   },
   {
     name: 'dropdown',
-    href: '/dropdown',
+    href: '/advanced-select',
     icon: ListFilter,
     theme: MODULE_THEMES.emerald,
   },

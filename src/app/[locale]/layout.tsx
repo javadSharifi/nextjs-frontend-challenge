@@ -3,6 +3,7 @@ import { getMessages } from 'next-intl/server';
 import { Rajdhani, Orbitron, Space_Grotesk } from 'next/font/google';
 import { QueryProvider } from '@/src/providers/QueryProvider';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
+import { ColorModeProvider } from '@/src/components/ui/color-mode';
 import '../globals.css';
 const rajdhani = Rajdhani({
   subsets: ['latin'],
@@ -49,9 +50,11 @@ export default async function LocaleLayout({
     >
       <body suppressHydrationWarning>
         <NuqsAdapter>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            <QueryProvider>{children}</QueryProvider>
-          </NextIntlClientProvider>
+          <ColorModeProvider>
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              <QueryProvider>{children}</QueryProvider>
+            </NextIntlClientProvider>
+          </ColorModeProvider>
         </NuqsAdapter>
       </body>
     </html>

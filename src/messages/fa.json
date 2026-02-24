@@ -130,6 +130,33 @@
     "themes": "تم‌ها",
     "personalization": "شخصی‌سازی"
   },
+  "AdvancedSelect": {
+    "title": "دراپ‌داون پیشرفته",
+    "placeholder": "انتخاب کنید...",
+    "search": "جستجو...",
+    "selectAll": "انتخاب همه",
+    "deselectAll": "لغو انتخاب همه",
+    "noOptions": "گزینه‌ای یافت نشد",
+    "allSelected": "همه انتخاب شدند",
+    "multiSelectWithGroups": "چند انتخابی با گروه‌بندی",
+    "chooseFavorites": "علاقه‌مندی‌های خود را انتخاب کنید",
+    "selectFruitsAndVegetables": "میوه و سبزیجات را انتخاب کنید...",
+    "singleSelect": "تک انتخابی",
+    "chooseOne": "یکی را انتخاب کنید",
+    "selectFruit": "یک میوه انتخاب کنید...",
+    "virtualizedList": "لیست مجازی (۱۰۰۰ آیتم)",
+    "virtualizedDescription": "استفاده از @tanstack/react-virtual برای عملکرد بهتر",
+    "selectFromLargeDataset": "از مجموعه داده بزرگ انتخاب کنید",
+    "search1000Items": "جستجوی ۱۰۰۰ آیتم...",
+    "selected": "انتخاب شده",
+    "items": "آیتم",
+    "disabledState": "حالت غیرفعال",
+    "disabledSelect": "انتخاب غیرفعال",
+    "thisIsDisabled": "این غیرفعال است",
+    "errorState": "حالت خطا",
+    "invalidSelection": "انتخاب نامعتبر",
+    "errorMessage": "لطفاً حداقل یک گزینه را انتخاب کنید"
+  },
   "NotFound": {},
   "game": {
     "search": {
