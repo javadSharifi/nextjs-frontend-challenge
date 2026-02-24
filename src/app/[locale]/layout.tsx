@@ -3,8 +3,8 @@ import { getMessages } from 'next-intl/server';
 import { Rajdhani, Orbitron, Space_Grotesk } from 'next/font/google';
 import { QueryProvider } from '@/src/providers/QueryProvider';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
-import { ColorModeProvider } from '@/src/components/ui/color-mode';
 import '../globals.css';
+import { ColorModeProvider } from './dashboard/_components/color-mode';
 const rajdhani = Rajdhani({
   subsets: ['latin'],
   variable: '--font-rajdhani',

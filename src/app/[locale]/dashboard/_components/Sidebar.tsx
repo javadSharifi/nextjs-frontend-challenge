@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@/src/components/ui/button';
+import { Button } from './button';
 import { Link } from '@/src/i18n/navigation';
 import { Stack, Text, Box, Flex, Avatar, Icon } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';

@@ -1,10 +1,10 @@
 'use client';
 
-import { Button } from '@/src/components/ui/button';
-import { ColorModeButton } from '@/src/components/ui/color-mode';
 import { Flex, Text, HStack, Box } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 import { Menu, Bell } from 'lucide-react';
+import { Button } from './button';
+import { ColorModeButton } from './color-mode';
 
 interface IHeaderProps {
   onSidebarOpen?: () => void;
