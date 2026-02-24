@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
-import { ChakraProviderWrapper } from '@/src/providers/ChakraProvider';
+
 import { Box } from '@chakra-ui/react';
+import { ChakraProviderWrapper } from './_components/ChakraProvider';
 
 export const metadata: Metadata = {
   title: {
