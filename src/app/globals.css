@@ -1,4 +1,6 @@
-@import 'tailwindcss';
+/* Scoped Tailwind Setup */
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities";
 
 @plugin 'tailwindcss-animate';
 
@@ -58,7 +60,7 @@
   --font-display: var(--font-rajdhani), var(--font-orbitron), sans-serif;
   --font-body: var(--font-space-grotesk), sans-serif;
 
-  /* Custom Colors from User Prompt */
+  /* Custom Colors */
   --color-primary-hover: oklch(62% 0.25 24);
   --color-primary-muted: oklch(58% 0.22 24 / 0.15);
   --color-primary-glow: oklch(58% 0.22 24 / 0.3);
@@ -78,16 +80,23 @@
 }
 
 @layer base {
-  body {
+  /* Scope the base styles to .tw-isolated to prevent leakage into Chakra */
+  .tw-isolated {
     @apply bg-base-200 text-base-content font-body antialiased transition-colors duration-300;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-display;
+
+    h1, h2, h3, h4, h5, h6 {
+      @apply font-display;
+    }
+
+    /* Manually include minimal necessary resets for Tailwind components if needed */
+    img, svg, video, canvas, audio, iframe, embed, object {
+      display: block;
+      vertical-align: middle;
+    }
+
+    *, ::before, ::after {
+      border-color: var(--color-gray-200, currentColor);
+    }
   }
 }
 

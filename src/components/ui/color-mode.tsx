@@ -16,7 +16,6 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
       disableTransitionOnChange
       defaultTheme="light"
       enableSystem={false}
-      suppressHydrationWarning
       {...props}
     />
   );

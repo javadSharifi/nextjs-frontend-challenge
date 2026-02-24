@@ -1,0 +1,39 @@
+
+> frontend-challenge@0.1.0 dev /app
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+
+✓ Starting...
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+✓ Ready in 2.1s
+ GET /en/games 404 in 3.0s (compile: 2.4s, proxy.ts: 137ms, render: 373ms)
+ GET /en/dashboard 404 in 77ms (compile: 19ms, proxy.ts: 10ms, render: 47ms)
+ GET /en/advanced-select 404 in 105ms (compile: 8ms, proxy.ts: 5ms, render: 92ms)
+/*! 🌼 daisyUI 5.5.19 */
+○ Compiling /[locale]/games ...
+⨯ Error: Failed to fetch games: Unauthorized
+    at fetchGames (src/app/[locale]/games/_services/games.service.ts:35:22)
+    at async GamePage (src/app/[locale]/games/page.tsx:37:50)
+  33 |
+  34 |   const res = await fetch(url, { next: { revalidate: 3600 } });
+> 35 |   if (!res.ok) throw new Error(`Failed to fetch games: ${res.statusText}`);
+     |                      ^
+  36 |   return res.json();
+  37 | }
+  38 | {
+  digest: '4268381147'
+}
+ GET /games 500 in 5.9s (compile: 5.0s, proxy.ts: 7ms, render: 972ms)
+○ Compiling /[locale]/dashboard ...
+ GET /dashboard 200 in 8.1s (compile: 7.4s, proxy.ts: 9ms, render: 731ms)
+ GET /dashboard/login 200 in 3.2s (compile: 3.1s, proxy.ts: 7ms, render: 142ms)
+ GET /dashboard/login 200 in 103ms (compile: 55ms, proxy.ts: 6ms, render: 41ms)
+ GET /advanced-select 200 in 1543ms (compile: 1450ms, proxy.ts: 5ms, render: 88ms)
